@@ -2,6 +2,15 @@ package game;
 import pieces.*;
 
 public class Chess_Game {
+	/*
+	 * TODO: 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 	
 	//KINGS
 	King blackKing = new King(PieceColor.Black);

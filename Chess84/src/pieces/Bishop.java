@@ -1,3 +1,4 @@
+package pieces;
 
 public class Bishop extends Pieces{
 	public Bishop(PieceColor color){

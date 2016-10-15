@@ -1,3 +1,4 @@
+package pieces;
 
 public abstract class Pieces {
 	PieceColor color;

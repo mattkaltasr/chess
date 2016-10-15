@@ -1,3 +1,4 @@
+package pieces;
 
 public class Knight extends Pieces {
 	public Knight(PieceColor color){

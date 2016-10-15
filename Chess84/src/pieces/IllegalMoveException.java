@@ -1,3 +1,4 @@
+package pieces;
 
 public class IllegalMoveException extends Exception {
 	
