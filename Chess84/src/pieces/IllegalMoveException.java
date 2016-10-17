@@ -1,9 +1,6 @@
 package pieces;
 
-public class IllegalMoveException extends Exception {
-	
-	
-	
+public class IllegalMoveException extends Exception {	
 	
 	
 	
