@@ -10,9 +10,9 @@ public class Queen extends Pieces{
 	public String getCharRepresentation() {
 		// TODO Auto-generated method stub
 		if(this.color==PieceColor.Black)
-		return " QBK ";
+		return " bQ ";
 		else 
-			return " QWT ";
+			return " wQ ";
 	}
 
 	@Override

@@ -9,9 +9,9 @@ public class Bishop extends Pieces{
 	public String getCharRepresentation() {
 		// TODO Auto-generated method stub
 		if(this.color==PieceColor.Black)
-		return " BBK ";
+		return " bB ";
 		else 
-			return " BWT ";
+			return " wB ";
 					
 	}
 

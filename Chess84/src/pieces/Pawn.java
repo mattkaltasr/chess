@@ -10,9 +10,9 @@ public class Pawn extends Pieces{
 	public String getCharRepresentation() {
 		// TODO Auto-generated method stub
 		if(this.color==PieceColor.Black)
-		return " PBK ";
+		return " bp ";
 		else 
-			return" PWT ";
+			return" wp ";
 	}
 
 	@Override

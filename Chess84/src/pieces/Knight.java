@@ -9,9 +9,9 @@ public class Knight extends Pieces {
 	public String getCharRepresentation() {
 		// TODO Auto-generated method stub
 		if (this.color==PieceColor.Black)
-		return " KNB ";
+		return " bN ";
 		else 
-			return " KNW ";
+			return " wN ";
 	}
 
 	@Override

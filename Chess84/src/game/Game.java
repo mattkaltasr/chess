@@ -11,15 +11,37 @@ public class Game {
 	public static void main(String args[]) throws IOException, NumberFormatException, IllegalMoveException{
 		Board b = new Board();
 		
-		while(true){		
+		boolean white = true;
+		while(true){	
+			if(white)				
+				System.out.println("White enter your move: {letternumber(from) letternumber(to)} ex: e3 e4");
+			else				
+				System.out.println("Black enter your move: {letternumber(from) letternumber(to)} ex: e3 e4");
+			
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		String input = reader.readLine();
 		
+		if(input.equalsIgnoreCase("resign")){
+			if(white)
+				System.out.println("WHITE RESIGNED");
+			else
+				System.out.println("BLACK RESIGNED");
+			return;
+		}
+		
 		String[] change = input.split(" ");
-		b.changePosition(b.positionLettertoInt(change[0])
-						,Integer.parseInt(change[1]) -1
-						,b.positionLettertoInt(change[2])
-						,Integer.parseInt(change[3]) -1);		
+		
+		String fromLetter = change[0].substring(0, 1);
+	    String fromNumber = change[0].substring(1);
+
+		String toLetter = change[1].substring(0, 1);
+	    String toNumber = change[1].substring(1);
+		
+		b.changePosition(b.positionLettertoInt(fromLetter)
+						,Integer.parseInt(fromNumber) -1
+						,b.positionLettertoInt(toLetter)
+						,Integer.parseInt(toNumber) -1, white);		
+		white = !white;
 		
 		}
 	}

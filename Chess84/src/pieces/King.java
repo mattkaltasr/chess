@@ -11,9 +11,9 @@ public class King extends Pieces{
 	public String getCharRepresentation() {
 		// TODO Auto-generated method stub
 		if (this.color==PieceColor.Black)
-		return " KBK ";
+		return " bK ";
 		else 
-			return " KWT ";
+			return " wK ";
 	}
 
 	@Override
