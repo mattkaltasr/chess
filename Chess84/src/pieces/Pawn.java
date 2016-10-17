@@ -1,9 +1,16 @@
 package pieces;
 
+import game.Location;
+
 public class Pawn extends Pieces{
 	
 	public Pawn(PieceColor color, String[] position){
 		super(color,position);
+	}
+
+	public Pawn(PieceColor color, Location location){
+		super(color,location);
+		
 	}
 
 	@Override

@@ -1,15 +1,25 @@
 package pieces;
 
+import game.Location;
+import game.Location.*;
+
 public abstract class Pieces {
 	PieceColor color;
 	String position_x;
 	String position_y;
+	public Location location;
 	
 	public Pieces(PieceColor Color, String[] position){
 		this.color=Color;
 		this.position_x = position[0];
 		this.position_y = position[1];
 	}
+	public Pieces(PieceColor Color, Location location){
+		this.color = Color;
+		location.assignPiece(this);
+		this.location = location;
+	}
+	
 	public abstract String getCharRepresentation();
 	
 	public  abstract void Move();

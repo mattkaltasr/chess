@@ -1,9 +1,16 @@
 package pieces;
 
+import game.Location;
+
 public class Rook extends Pieces{
 	
 	public Rook(PieceColor color, String[] position){
 		super(color,position);
+	}
+
+	public Rook(PieceColor color, Location location){
+		super(color,location);
+		
 	}
 
 	@Override

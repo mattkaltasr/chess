@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import pieces.IllegalMoveException;
 
 public class Game {
-	
+	/*
 	public static void main(String args[]) throws IOException, NumberFormatException, IllegalMoveException{
 		Board b = new Board();
 		
@@ -46,5 +46,38 @@ public class Game {
 		}
 	}
 	
-
+*/
+	
+	
+	public static void main(String args[]) throws IOException, NumberFormatException, IllegalMoveException{
+		TestBoard b = new TestBoard();	
+		
+		boolean white = true;
+		while(true){
+			if(white)
+				System.out.println("Next move (White): ");
+			else
+				System.out.println("Next move (Black): ");
+			System.out.println("");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			String input = reader.readLine();
+			
+			if(input.equalsIgnoreCase("resign")){
+					System.out.println("RESIGNED");
+					return;
+			}
+			
+			String[] change = input.split(" ");
+			
+			String fromLocation = change[0];
+			String toLocation = change[1];
+			
+			b.changePosition(fromLocation, toLocation, white);
+			
+			white = !white;
+		}
+	
+	}
+	
+	
 }

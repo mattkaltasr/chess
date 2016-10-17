@@ -1,8 +1,15 @@
 package pieces;
 
+import game.Location;
+
 public class Bishop extends Pieces{
 	public Bishop(PieceColor color, String[] position){
 		super(color,position);
+	}
+
+	public Bishop(PieceColor color, Location location){
+		super(color,location);
+		
 	}
 
 	@Override

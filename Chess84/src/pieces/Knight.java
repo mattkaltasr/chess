@@ -1,8 +1,16 @@
 package pieces;
 
+import game.Location;
+import game.Location.*;
+
 public class Knight extends Pieces {
 	public Knight(PieceColor color, String[] position){
 		super(color,position);
+	}
+
+	public Knight(PieceColor color, Location location){
+		super(color,location);
+		
 	}
 
 	@Override

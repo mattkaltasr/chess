@@ -1,12 +1,18 @@
 package pieces;
 
+import game.Location;
+
 public class King extends Pieces{
 	
 	public King(PieceColor color, String[] position){
 		super(color,position);
 		
 	}
-
+	public King(PieceColor color, Location location){
+		super(color,location);
+		
+	}
+	
 	@Override
 	public String getCharRepresentation() {
 		// TODO Auto-generated method stub
