@@ -2,17 +2,17 @@ package pieces;
 
 public class Queen extends Pieces{
 	
-	public Queen(PieceColor color){
-		super(color);
+	public Queen(PieceColor color, String[] position){
+		super(color,position);
 	}
 
 	@Override
 	public String getCharRepresentation() {
 		// TODO Auto-generated method stub
 		if(this.color==PieceColor.Black)
-		return "QBK";
+		return " QBK ";
 		else 
-			return "QWT";
+			return " QWT ";
 	}
 
 	@Override

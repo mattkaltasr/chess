@@ -1,17 +1,17 @@
 package pieces;
 
 public class Knight extends Pieces {
-	public Knight(PieceColor color){
-		super(color);
+	public Knight(PieceColor color, String[] position){
+		super(color,position);
 	}
 
 	@Override
 	public String getCharRepresentation() {
 		// TODO Auto-generated method stub
 		if (this.color==PieceColor.Black)
-		return "KNB";
+		return " KNB ";
 		else 
-			return "KNW";
+			return " KNW ";
 	}
 
 	@Override

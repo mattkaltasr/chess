@@ -2,17 +2,17 @@ package pieces;
 
 public class Pawn extends Pieces{
 	
-	public Pawn(PieceColor color){
-		super(color);
+	public Pawn(PieceColor color, String[] position){
+		super(color,position);
 	}
 
 	@Override
 	public String getCharRepresentation() {
 		// TODO Auto-generated method stub
 		if(this.color==PieceColor.Black)
-		return "PBK";
+		return " PBK ";
 		else 
-			return"PWT";
+			return" PWT ";
 	}
 
 	@Override

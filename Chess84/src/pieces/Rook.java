@@ -2,17 +2,17 @@ package pieces;
 
 public class Rook extends Pieces{
 	
-	public Rook(PieceColor color){
-		super(color);
+	public Rook(PieceColor color, String[] position){
+		super(color,position);
 	}
 
 	@Override
 	public String getCharRepresentation() {
 		// TODO Auto-generated method stub
 		if(this.color==PieceColor.Black)
-		return "RBK";
+		return " RBK ";
 		else
-			return"RWT";
+			return" RWT ";
 	}
 
 	@Override

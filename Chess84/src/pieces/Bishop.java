@@ -1,17 +1,17 @@
 package pieces;
 
 public class Bishop extends Pieces{
-	public Bishop(PieceColor color){
-		super(color);
+	public Bishop(PieceColor color, String[] position){
+		super(color,position);
 	}
 
 	@Override
 	public String getCharRepresentation() {
 		// TODO Auto-generated method stub
 		if(this.color==PieceColor.Black)
-		return "BBK";
+		return " BBK ";
 		else 
-			return "BWT";
+			return " BWT ";
 					
 	}
 

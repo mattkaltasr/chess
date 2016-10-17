@@ -2,9 +2,13 @@ package pieces;
 
 public abstract class Pieces {
 	PieceColor color;
-		
-	public Pieces(PieceColor Color ){
+	String position_x;
+	String position_y;
+	
+	public Pieces(PieceColor Color, String[] position){
 		this.color=Color;
+		this.position_x = position[0];
+		this.position_y = position[1];
 	}
 	public abstract String getCharRepresentation();
 	
@@ -15,6 +19,14 @@ public abstract class Pieces {
 	
 	public PieceColor getColor (){
 		return color;
+	}
+	public String[] getPosition (){
+		String[] position = {position_x,position_y};
+		return position;
+	}
+	public void setPosition (String[] position){
+		this.position_x = position[0];
+		this.position_y = position[1];
 	}
 	
 	public void setColor(PieceColor color){
