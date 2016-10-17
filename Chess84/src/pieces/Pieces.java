@@ -24,6 +24,12 @@ public abstract class Pieces {
 		String[] position = {position_x,position_y};
 		return position;
 	}
+	public String getPosition_x (){
+		return position_x;
+	}
+	public String getPosition_y (){
+		return position_y;
+	}
 	public void setPosition (String[] position){
 		this.position_x = position[0];
 		this.position_y = position[1];

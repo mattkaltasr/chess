@@ -73,6 +73,16 @@ public class Board {
 	//So board[y][x] y=a x=2 is actually A2 on the board
 	public void changePosition(int x, int y, int new_x, int new_y, boolean white) throws IllegalMoveException{
 		
+		Pieces piece = null;
+		for(Pieces eachpiece: piecesList){
+			int piece_x = positionLettertoInt(eachpiece.getPosition_x());
+			int piece_y = (Integer.parseInt(eachpiece.getPosition_y()) - 1);
+			if(piece_x == x && piece_y == y){
+				piece = eachpiece;
+				break;				
+				}
+		}
+		
 		if(board[y][x] == space){
 			throw new IllegalMoveException();		}
 		
@@ -85,17 +95,20 @@ public class Board {
 		
 		
 		if(board[new_y][new_x] == space){
+			piece.setPosition(new String[] {positionInttoLetter(new_x),String.valueOf(new_y)});
 			board[new_y][new_x] = board[y][x];
 			board[y][x] = space;
 		}else{
 			if((board[y][x]).contains("b") && (board[new_y][new_x]).contains("w"))
 			{
 				board[new_y][new_x] = board[y][x];
+				piece.setPosition(new String[] {positionInttoLetter(new_x),String.valueOf(new_y)});
 				board[y][x] = space;
 			}
 			else if((board[y][x]).contains("w") && (board[new_y][new_x]).contains("b"))
 			{
 				board[new_y][new_x] = board[y][x];
+				piece.setPosition(new String[] {positionInttoLetter(new_x),String.valueOf(new_y)});
 				board[y][x] = space;
 			}
 			else
@@ -212,5 +225,29 @@ public class Board {
 		return -1;
 
 	}
+	public String positionInttoLetter(int number) {
+		switch (number) {
+		case 0:
+			return "a";
+		case 1:
+			return "b";
+		case 2:
+			return "c";
+		case 3:
+			return "d";
+		case 4:
+			return "e";
+		case 5:
+			return "f";
+		case 6:
+			return "g";
+		case 7:
+			return "h";
 
+		}
+		return "x";
+
+	}
+
+	
 }

@@ -20,10 +20,12 @@ public class Bishop extends Pieces{
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 	@Override
 	public boolean isMoveLegal() {
 		// TODO Auto-generated method stub
+		
 		return false;
 	}
 	public String toString() {
