@@ -5,6 +5,7 @@ public abstract class Pieces {
 	String position_x;
 	String position_y;
 	
+	
 	public Pieces(PieceColor Color, String[] position){
 		this.color=Color;
 		this.position_x = position[0];
@@ -15,7 +16,7 @@ public abstract class Pieces {
 	public  abstract void Move();
 	// method needed for piece to move 
 
-	public abstract boolean isMoveLegal();
+	public abstract boolean isMoveLegal(int x,int y);
 	
 	public PieceColor getColor (){
 		return color;

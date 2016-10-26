@@ -67,12 +67,29 @@ public class Board {
 		addPieces();
 		drawBoard();
 	}
-	public void changePosition(int x, int y, int new_x, int new_y){
+	public void changePosition(int x, int y, int new_x, int new_y) throws IllegalMoveException{
+		
+		if(board[y][x] == space){
+			throw new IllegalMoveException();		}
+		
+		
 		if(board[new_y][new_x] == space){
 			board[new_y][new_x] = board[y][x];
 			board[y][x] = space;
 		}else{
-			// TODO
+			if((board[y][x]).contains("BK") && (board[new_y][new_x]).contains("WT"))
+			{
+				board[new_y][new_x] = board[y][x];
+				board[y][x] = space;
+			}
+			else if((board[y][x]).contains("WT") && (board[new_y][new_x]).contains("BK"))
+			{
+				board[new_y][new_x] = board[y][x];
+				board[y][x] = space;
+			}
+			else
+			{throw new IllegalMoveException();}
+			
 		}
 		
 		reDrawBoard();		
@@ -96,8 +113,8 @@ public class Board {
 		piecesList.add(whiteKnight2);
 
 		piecesList.add(blackRook1);
-		piecesList.add(whiteRook2);
-		piecesList.add(blackRook1);
+		piecesList.add(blackRook2);
+		piecesList.add(whiteRook1);
 		piecesList.add(whiteRook2);
 
 		piecesList.add(blackPawn1);
@@ -107,7 +124,7 @@ public class Board {
 		piecesList.add(blackPawn5);
 		piecesList.add(blackPawn6);
 		piecesList.add(blackPawn7);
-		piecesList.add(whitePawn8);
+		piecesList.add(blackPawn8);
 		piecesList.add(whitePawn1);
 		piecesList.add(whitePawn2);
 		piecesList.add(whitePawn3);
@@ -117,13 +134,23 @@ public class Board {
 		piecesList.add(whitePawn7);
 		piecesList.add(whitePawn8);
 	}
-
-	public String space = " ___ ";
+	public String space = "";
+	public String bspace = " ## ";
+	public String wspace = "    ";
 	public void drawBoard() {
+		Boolean wSquare=true;
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				board[i][j] = space;
+				if(wSquare){
+				board[i][j] = wspace;
+				wSquare=false;
+				}
+				else{
+					board[i][j] = bspace;
+					wSquare=true;
+				}
 			}
+			wSquare=!wSquare;
 		}
 
 		for (Pieces piece : piecesList) {
@@ -138,9 +165,13 @@ public class Board {
 			for (int j = 0; j < 8; j++) {
 				System.out.print(board[i][j]);
 			}
+			System.out.print(""+(8-i));
 		}
-
+System.out.print("\n  a   b   c   d   e   f   g   h");
 		System.out.println("");
+		System.out.println("");
+		
+		System.out.println("Enter your move: {letter-from number-from letter-to letter-to}");
 
 	}
 	
@@ -151,8 +182,12 @@ public class Board {
 				System.out.print(board[i][j]);
 			}
 		}
-
+		
 		System.out.println("");
+		System.out.println("");
+		
+		System.out.println("Enter your move: {letter-from number-from letter-to letter-to}");
+
 	}
 		
 	public int positionLettertoInt(String letter) {

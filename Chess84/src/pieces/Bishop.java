@@ -9,9 +9,9 @@ public class Bishop extends Pieces{
 	public String getCharRepresentation() {
 		// TODO Auto-generated method stub
 		if(this.color==PieceColor.Black)
-		return " BBK ";
+		return " bB ";
 		else 
-			return " BWT ";
+			return " wB ";
 					
 	}
 
@@ -22,7 +22,10 @@ public class Bishop extends Pieces{
 	}
 
 	@Override
-	public boolean isMoveLegal() {
+	public boolean isMoveLegal(int x,int y) {
+		//commented out till methods are made 
+		//if (pathnotblocked()&&destNotColor())
+		//return Math.abs((this.current.getX())-x) == Math.abs((this.current.getY())-y);
 		// TODO Auto-generated method stub
 		return false;
 	}

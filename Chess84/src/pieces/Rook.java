@@ -10,9 +10,9 @@ public class Rook extends Pieces{
 	public String getCharRepresentation() {
 		// TODO Auto-generated method stub
 		if(this.color==PieceColor.Black)
-		return " RBK ";
+		return " bR ";
 		else
-			return" RWT ";
+			return" wR ";
 	}
 
 	@Override
@@ -22,7 +22,7 @@ public class Rook extends Pieces{
 	}
 
 	@Override
-	public boolean isMoveLegal() {
+	public boolean isMoveLegal(int x,int y) {
 		// TODO Auto-generated method stub
 		return false;
 	}
