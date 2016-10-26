@@ -1,14 +1,18 @@
 package pieces;
 
+import java.awt.Point;
+
 public class Pawn extends Pieces{
 	
 	//used to count moves 
 	
 	int counter;
+	Point current;
 	
-	
-	public Pawn(PieceColor color, String[] position){
+	public Pawn(PieceColor color, String[] position,Point start){
 		super(color,position);
+		counter=0;
+		current=start;
 	}
 
 	@Override

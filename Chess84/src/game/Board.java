@@ -1,4 +1,5 @@
 package game;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import pieces.*;
@@ -43,22 +44,22 @@ public class Board {
 	Rook whiteRook1 = new Rook(PieceColor.White, new String[] { "a", "1" });
 	Rook whiteRook2 = new Rook(PieceColor.White, new String[] { "h", "1" });
 	// PAWNS
-	Pawn blackPawn1 = new Pawn(PieceColor.Black, new String[] { "a", "7" });
-	Pawn blackPawn2 = new Pawn(PieceColor.Black, new String[] { "b", "7" });
-	Pawn blackPawn3 = new Pawn(PieceColor.Black, new String[] { "c", "7" });
-	Pawn blackPawn4 = new Pawn(PieceColor.Black, new String[] { "d", "7" });
-	Pawn blackPawn5 = new Pawn(PieceColor.Black, new String[] { "e", "7" });
-	Pawn blackPawn6 = new Pawn(PieceColor.Black, new String[] { "f", "7" });
-	Pawn blackPawn7 = new Pawn(PieceColor.Black, new String[] { "g", "7" });
-	Pawn blackPawn8 = new Pawn(PieceColor.Black, new String[] { "h", "7" });
-	Pawn whitePawn1 = new Pawn(PieceColor.White, new String[] { "a", "2" });
-	Pawn whitePawn2 = new Pawn(PieceColor.White, new String[] { "b", "2" });
-	Pawn whitePawn3 = new Pawn(PieceColor.White, new String[] { "c", "2" });
-	Pawn whitePawn4 = new Pawn(PieceColor.White, new String[] { "d", "2" });
-	Pawn whitePawn5 = new Pawn(PieceColor.White, new String[] { "e", "2" });
-	Pawn whitePawn6 = new Pawn(PieceColor.White, new String[] { "f", "2" });
-	Pawn whitePawn7 = new Pawn(PieceColor.White, new String[] { "g", "2" });
-	Pawn whitePawn8 = new Pawn(PieceColor.White, new String[] { "h", "2" });
+	Pawn blackPawn1 = new Pawn(PieceColor.Black, new String[] { "a", "7" },new Point(0,7));
+	Pawn blackPawn2 = new Pawn(PieceColor.Black, new String[] { "b", "7" },new Point(1,7));
+	Pawn blackPawn3 = new Pawn(PieceColor.Black, new String[] { "c", "7" },new Point(2,7));
+	Pawn blackPawn4 = new Pawn(PieceColor.Black, new String[] { "d", "7" },new Point(3,7));
+	Pawn blackPawn5 = new Pawn(PieceColor.Black, new String[] { "e", "7" },new Point(4,7));
+	Pawn blackPawn6 = new Pawn(PieceColor.Black, new String[] { "f", "7" },new Point(5,7));;
+	Pawn blackPawn7 = new Pawn(PieceColor.Black, new String[] { "g", "7" },new Point(6,7));
+	Pawn blackPawn8 = new Pawn(PieceColor.Black, new String[] { "h", "7" },new Point(7,7));
+	Pawn whitePawn1 = new Pawn(PieceColor.White, new String[] { "a", "2" },new Point(0,2));
+	Pawn whitePawn2 = new Pawn(PieceColor.White, new String[] { "b", "2" },new Point(1,2));
+	Pawn whitePawn3 = new Pawn(PieceColor.White, new String[] { "c", "2" },new Point(2,2));
+	Pawn whitePawn4 = new Pawn(PieceColor.White, new String[] { "d", "2" },new Point(3,2));
+	Pawn whitePawn5 = new Pawn(PieceColor.White, new String[] { "e", "2" },new Point(4,2));
+	Pawn whitePawn6 = new Pawn(PieceColor.White, new String[] { "f", "2" },new Point(5,2));
+	Pawn whitePawn7 = new Pawn(PieceColor.White, new String[] { "g", "2" },new Point(6,2));
+	Pawn whitePawn8 = new Pawn(PieceColor.White, new String[] { "h", "2" },new Point(7,2));
 
 	public List<Pieces> piecesList = new ArrayList<Pieces>();
 	public String[][] board = new String[8][8];
@@ -212,6 +213,11 @@ System.out.print("\n  a   b   c   d   e   f   g   h");
 		}
 		return -1;
 
+	}
+	public Boolean pathNotBlocked(int oldx ,int oldy,int destx,int desty){
+		//if(Math.abs((oldx-destx)==1&&Math.abs(oldy-desty)==0)||(oldx-destx)==0&&Math.abs(oldy-desty)==1))
+		return false;
+		
 	}
 
 }
