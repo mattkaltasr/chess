@@ -1,8 +1,16 @@
 package pieces;
 
+import java.awt.Point;
+
 public class Bishop extends Pieces{
-	public Bishop(PieceColor color, String[] position){
+	
+	Point current;
+	
+	
+	
+	public Bishop(PieceColor color, String[] position,Point start){
 		super(color,position);
+		current=start;
 	}
 
 	@Override

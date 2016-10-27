@@ -29,10 +29,10 @@ public class Board {
 	Queen blackQueen = new Queen(PieceColor.Black, new String[] { "e", "8" });
 	Queen whiteQueen = new Queen(PieceColor.White, new String[] { "e", "1" });
 	// BISHOPS
-	Bishop blackBishop1 = new Bishop(PieceColor.Black, new String[] { "c", "8" });
-	Bishop blackBishop2 = new Bishop(PieceColor.Black, new String[] { "f", "8" });
-	Bishop whiteBishop1 = new Bishop(PieceColor.White, new String[] { "c", "1" });
-	Bishop whiteBishop2 = new Bishop(PieceColor.White, new String[] { "f", "1" });
+	Bishop blackBishop1 = new Bishop(PieceColor.Black, new String[] { "c", "8" },new Point(2,8));
+	Bishop blackBishop2 = new Bishop(PieceColor.Black, new String[] { "f", "8" },new Point(5,8));
+	Bishop whiteBishop1 = new Bishop(PieceColor.White, new String[] { "c", "1" },new Point(2,1));
+	Bishop whiteBishop2 = new Bishop(PieceColor.White, new String[] { "f", "1" },new Point(5,8));
 	// KNIGHTS
 	Knight blackKnight1 = new Knight(PieceColor.Black, new String[] { "b", "8" });
 	Knight blackKnight2 = new Knight(PieceColor.Black, new String[] { "g", "8" });
@@ -59,7 +59,7 @@ public class Board {
 	Pawn whitePawn5 = new Pawn(PieceColor.White, new String[] { "e", "2" },new Point(4,2));
 	Pawn whitePawn6 = new Pawn(PieceColor.White, new String[] { "f", "2" },new Point(5,2));
 	Pawn whitePawn7 = new Pawn(PieceColor.White, new String[] { "g", "2" },new Point(6,2));
-	Pawn whitePawn8 = new Pawn(PieceColor.White, new String[] { "h", "2" },new Point(7,2));
+	Pawn whitePawn8 = new Pawn(PieceColor.White, new String[] { "h", "2" },new Point(1,2));
 
 	public List<Pieces> piecesList = new ArrayList<Pieces>();
 	public String[][] board = new String[8][8];

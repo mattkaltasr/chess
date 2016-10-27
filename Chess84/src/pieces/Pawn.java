@@ -6,7 +6,7 @@ public class Pawn extends Pieces{
 	
 	//used to count moves 
 	
-	int counter;
+	public int counter;
 	Point current;
 	
 	public Pawn(PieceColor color, String[] position,Point start){
