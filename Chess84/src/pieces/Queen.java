@@ -1,9 +1,16 @@
 package pieces;
 
+import game.Location;
+
 public class Queen extends Pieces{
 	
 	public Queen(PieceColor color, String[] position){
 		super(color,position);
+	}
+
+	public Queen(PieceColor color, Location location){
+		super(color,location);
+		
 	}
 
 	@Override

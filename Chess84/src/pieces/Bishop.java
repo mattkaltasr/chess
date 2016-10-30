@@ -1,6 +1,10 @@
 package pieces;
 
+
 import java.awt.Point;
+
+import game.Location;
+
 
 public class Bishop extends Pieces{
 	
@@ -10,7 +14,15 @@ public class Bishop extends Pieces{
 	
 	public Bishop(PieceColor color, String[] position,Point start){
 		super(color,position);
+
 		current=start;
+
+	}
+
+	public Bishop(PieceColor color, Location location){
+		super(color,location);
+		
+
 	}
 
 	@Override
@@ -28,6 +40,7 @@ public class Bishop extends Pieces{
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 	@Override
 	public boolean isMoveLegal(int x,int y) {
@@ -35,6 +48,7 @@ public class Bishop extends Pieces{
 		//if (pathnotblocked()&&destNotColor())
 		//return Math.abs((this.current.getX())-x) == Math.abs((this.current.getY())-y);
 		// TODO Auto-generated method stub
+		
 		return false;
 	}
 	public String toString() {

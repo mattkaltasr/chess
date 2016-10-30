@@ -1,6 +1,10 @@
 package pieces;
 
+
 import java.awt.Point;
+
+import game.Location;
+
 
 public class Pawn extends Pieces{
 	
@@ -15,13 +19,26 @@ public class Pawn extends Pieces{
 		current=start;
 	}
 
+	public Pawn(PieceColor color, Location location){
+		super(color,location);
+		
+	}
+
 	@Override
 	public String getCharRepresentation() {
 		// TODO Auto-generated method stub
 		if(this.color==PieceColor.Black)
+
 		return " bP ";
+
+	
+
 		else 
+
 			return" wP ";
+
+		
+
 	}
 
 	@Override
