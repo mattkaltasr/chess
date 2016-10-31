@@ -1,11 +1,18 @@
 package pieces;
 
+import java.awt.Point;
+
 import game.Location;
 
 public class Rook extends Pieces{
 	
-	public Rook(PieceColor color, String[] position){
+	public int counter;
+	Point current;
+	
+	public Rook(PieceColor color, String[] position,Point start){
 		super(color,position);
+		counter=0;
+		current=start;
 	}
 
 	public Rook(PieceColor color, Location location){

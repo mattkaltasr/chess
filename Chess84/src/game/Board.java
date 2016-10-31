@@ -23,28 +23,28 @@ public class Board {
 	 */
 
 	// KINGS
-	King blackKing = new King(PieceColor.Black, new String[] { "e", "1" });
-	King whiteKing = new King(PieceColor.White, new String[] { "e", "8" });
+	King blackKing = new King(PieceColor.Black, new String[] { "e", "1" }, new Point(4,1));
+	King whiteKing = new King(PieceColor.White, new String[] { "e", "8" }, new Point(4,8));
 	// QUEENS
-	Queen blackQueen = new Queen(PieceColor.Black, new String[] { "d", "1" });
-	Queen whiteQueen = new Queen(PieceColor.White, new String[] { "d", "8" });
+	Queen blackQueen = new Queen(PieceColor.Black, new String[] { "d", "1" }, new Point(3,1));
+	Queen whiteQueen = new Queen(PieceColor.White, new String[] { "d", "8" }, new Point(3,8));
 	// BISHOPS
 
 	Bishop blackBishop1 = new Bishop(PieceColor.Black, new String[] { "c", "8" },new Point(2,8));
 	Bishop blackBishop2 = new Bishop(PieceColor.Black, new String[] { "f", "8" },new Point(5,8));
 	Bishop whiteBishop1 = new Bishop(PieceColor.White, new String[] { "c", "1" },new Point(2,1));
-	Bishop whiteBishop2 = new Bishop(PieceColor.White, new String[] { "f", "1" },new Point(5,8));
+	Bishop whiteBishop2 = new Bishop(PieceColor.White, new String[] { "f", "1" },new Point(5,1));
 
 	// KNIGHTS
-	Knight blackKnight1 = new Knight(PieceColor.Black, new String[] { "b", "1" });
-	Knight blackKnight2 = new Knight(PieceColor.Black, new String[] { "g", "1" });
-	Knight whiteKnight1 = new Knight(PieceColor.White, new String[] { "b", "8" });
-	Knight whiteKnight2 = new Knight(PieceColor.White, new String[] { "g", "8" });
+	Knight blackKnight1 = new Knight(PieceColor.Black, new String[] { "b", "1" },new Point(1,1));
+	Knight blackKnight2 = new Knight(PieceColor.Black, new String[] { "g", "1" },new Point(6,1));
+	Knight whiteKnight1 = new Knight(PieceColor.White, new String[] { "b", "8" },new Point(1,8));
+	Knight whiteKnight2 = new Knight(PieceColor.White, new String[] { "g", "8" },new Point(6,8));
 	// ROOKS
-	Rook blackRook1 = new Rook(PieceColor.Black, new String[] { "a", "1" });
-	Rook blackRook2 = new Rook(PieceColor.Black, new String[] { "h", "1" });
-	Rook whiteRook1 = new Rook(PieceColor.White, new String[] { "a", "8" });
-	Rook whiteRook2 = new Rook(PieceColor.White, new String[] { "h", "8" });
+	Rook blackRook1 = new Rook(PieceColor.Black, new String[] { "a", "1" },new Point(0,1));
+	Rook blackRook2 = new Rook(PieceColor.Black, new String[] { "h", "1" },new Point(7,1));
+	Rook whiteRook1 = new Rook(PieceColor.White, new String[] { "a", "8" },new Point(0,8));
+	Rook whiteRook2 = new Rook(PieceColor.White, new String[] { "h", "8" },new Point(7,8));
 	// PAWNS
 
 	Pawn blackPawn1 = new Pawn(PieceColor.Black, new String[] { "a", "7" },new Point(0,7));
@@ -52,7 +52,7 @@ public class Board {
 	Pawn blackPawn3 = new Pawn(PieceColor.Black, new String[] { "c", "7" },new Point(2,7));
 	Pawn blackPawn4 = new Pawn(PieceColor.Black, new String[] { "d", "7" },new Point(3,7));
 	Pawn blackPawn5 = new Pawn(PieceColor.Black, new String[] { "e", "7" },new Point(4,7));
-	Pawn blackPawn6 = new Pawn(PieceColor.Black, new String[] { "f", "7" },new Point(5,7));;
+	Pawn blackPawn6 = new Pawn(PieceColor.Black, new String[] { "f", "7" },new Point(5,7));
 	Pawn blackPawn7 = new Pawn(PieceColor.Black, new String[] { "g", "7" },new Point(6,7));
 	Pawn blackPawn8 = new Pawn(PieceColor.Black, new String[] { "h", "7" },new Point(7,7));
 	Pawn whitePawn1 = new Pawn(PieceColor.White, new String[] { "a", "2" },new Point(0,2));

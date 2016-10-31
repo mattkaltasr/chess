@@ -1,12 +1,20 @@
 package pieces;
 
+import java.awt.Point;
+
 import game.Location;
 
 public class Queen extends Pieces{
 	
-	public Queen(PieceColor color, String[] position){
+	public int counter;
+	Point current;
+	
+	public Queen(PieceColor color, String[] position,Point start){
 		super(color,position);
+		counter=0;
+		current=start;
 	}
+
 
 	public Queen(PieceColor color, Location location){
 		super(color,location);

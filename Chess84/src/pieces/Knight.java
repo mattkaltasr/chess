@@ -8,16 +8,18 @@ import game.Location.*;
 
 
 public class Knight extends Pieces {
+	public int counter;
 	Point current;
 	
-	
-	public Knight(PieceColor color, String[] position){
+	public Knight(PieceColor color, String[] position,Point start){
 		super(color,position);
+		counter=0;
+		current=start;
 	}
+
 
 	public Knight(PieceColor color, Location location){
 		super(color,location);
-		
 	}
 
 	@Override
