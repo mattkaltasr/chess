@@ -1,5 +1,7 @@
 package pieces;
 
+import java.awt.Point;
+
 import game.Location;
 import game.Location.*;
 
@@ -23,7 +25,7 @@ public abstract class Pieces {
 	
 	public abstract String getCharRepresentation();
 	
-	public  abstract void Move();
+	public  abstract void Move(Point destination) throws IllegalMoveException;
 	// method needed for piece to move 
 
 	public abstract boolean isMoveLegal(int x,int y);

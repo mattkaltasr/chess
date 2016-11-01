@@ -36,7 +36,7 @@ public class Bishop extends Pieces{
 	}
 
 	@Override
-	public void Move() {
+	public void Move(Point destination) throws IllegalMoveException{
 		// TODO Auto-generated method stub
 		
 	}
