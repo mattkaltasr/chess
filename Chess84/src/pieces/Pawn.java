@@ -59,6 +59,7 @@ public class Pawn extends Pieces{
 			return ((row==2)&&(column==0));
 		if (counter>1)
 			return ((row==1)&&(column==0));
+		//need to check if diagonal if location is opposite color 
 		
 		return false;
 	}

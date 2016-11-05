@@ -424,4 +424,64 @@ public class TestBoard {
 	}
 
 	
+	static boolean pathClear(int fromX,int fromY,int toX,int toY,Pieces current,Location to){
+		switch(current.getCharRepresentation()){
+		
+		//checks pawn path 
+		
+		case " wP ":
+			if(current.isMoveLegal(toX, toY)){
+				return true;}
+			
+			else
+			 if(Math.abs(fromX-toY)==Math.abs(fromY-toX)){
+				 return true;
+			 }
+			 else return false;
+		
+		case " bP ":
+			if(current.isMoveLegal(toX, toY)){
+				return true;}
+			
+			else//check diagonal move 
+				
+			 if(Math.abs(fromX-toY)==Math.abs(fromY-toX)&&current.getColor()!=(to.piece.getColor())){
+				 
+				 return true;
+			 }
+			 else return false;
+			
+		}
+		
+		
+			
+		
+		
+		
+		
+		
+		
+		return false ;
+	}
+	
+	
+	public void capture (Pieces caught){
+		if (caught.getColor()==PieceColor.White){
+			whitePlayer.remove(caught);
+		
+			
+		}
+		else blackPlayer.remove(caught);
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
