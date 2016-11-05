@@ -1,4 +1,5 @@
 package game;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,8 @@ public class TestBoard {
 	 * 
 	 * 8| 7| 6| 5| 4| 3| 2| 1|__ __ __ __ __ __ __ __ a b c d e f g h
 	 */
-	
+	static Point whiteKingplace=new Point(4,8);
+	static Point blackKingPlace=new Point(4,1);
 	// Locations
 	Location a1 = new Location(locationName.a1,PieceColor.Black);
 	Location a2 = new Location(locationName.a2,PieceColor.White);
@@ -92,8 +94,10 @@ public class TestBoard {
 	
 
 	// KINGS
-	King blackKing = new King(PieceColor.Black, e1);
+	 King blackKing = new King(PieceColor.Black, e1);
+	 
 	King whiteKing = new King(PieceColor.White, e8);
+	
 	// QUEENS
 	Queen blackQueen = new Queen(PieceColor.Black, d1);
 	Queen whiteQueen = new Queen(PieceColor.White, d8);
@@ -133,7 +137,7 @@ public class TestBoard {
 	public List<Pieces> piecesList = new ArrayList<Pieces>();
 	public List<Location> board = new ArrayList<Location>();
 	
-	//player list to keep track of current pieces player has left and for stalemate,check 
+	//player list to keep track of current pieces player has left and for stale-mate,check 
 	public List<Pieces>  blackPlayer=new ArrayList<Pieces>();
 	public List<Pieces>  whitePlayer=new ArrayList<Pieces>();
 
@@ -189,7 +193,13 @@ public class TestBoard {
 						throw new IllegalMoveException();		}
 		}
 		//Check if move is legal
-			
+			if(white){
+				if(notInCheck((int)whiteKingplace.getX(),(int)whiteKingplace.getY()))
+					throw new IllegalMoveException("Can't move into check");
+				else 
+					notInCheck((int)blackKingPlace.getX(),(int)blackKingPlace.getY());
+				throw new IllegalMoveException("Can't move into check");
+			}
 			piece.location = to;
 			from.piece = null;
 			to.piece = piece;
@@ -439,6 +449,7 @@ public class TestBoard {
 			 }
 			 else return false;
 		
+		
 		case " bP ":
 			if(current.isMoveLegal(toX, toY)){
 				return true;}
@@ -451,17 +462,27 @@ public class TestBoard {
 			 }
 			 else return false;
 			
-		}
 		
 		
+		//knight can move as long as destination is either clear or color of piece is oppisite 
+		case " bN ":
+			if(current.getColor()!=to.piece.getColor()||to.piece==null){
+				return true;}
+			else return false;
+		
+		case " wN ":
+			if(current.getColor()!=to.piece.getColor()||to.piece==null){
+				return true;}
+			else return false;
+			
+			
+			
 			
 		
+		default:
+			return false;
 		
-		
-		
-		
-		
-		return false ;
+		}	
 	}
 	
 	
@@ -476,7 +497,19 @@ public class TestBoard {
 		
 	}
 	
-	
+	public Boolean notInCheck(int kingX,int Kingy){
+		
+		
+		for (Pieces temp :whitePlayer)
+			
+		if( temp.isMoveLegal(kingX,Kingy)){
+			
+			return true;}
+		
+		return false;
+		
+		
+	}
 	
 	
 	

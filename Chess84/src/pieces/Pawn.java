@@ -40,7 +40,8 @@ public class Pawn extends Pieces{
 		
 
 	}
-
+   // move being done in board class
+	
 	@Override
 	public void Move(Point destination)  throws IllegalMoveException{
 		// TODO Auto-generated method stub
@@ -61,7 +62,13 @@ public class Pawn extends Pieces{
 			return ((row==1)&&(column==0));
 		//need to check if diagonal if location is opposite color 
 		
-		return false;
+		return checkDiagnalMove(tempx,tempy, movex, movey);
+	}
+	public Boolean checkDiagnalMove(int tempx,int tempy,int movex,int movey){
+		  
+		if (Math.abs(tempx-movex)==1&&Math.abs(tempy-movey)==1)
+			return true;
+		return false ;
 	}
 	public String toString() {
 		return getCharRepresentation();

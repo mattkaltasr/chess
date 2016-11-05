@@ -29,7 +29,19 @@ public class King extends Pieces{
 		else 
 			return " wK ";
 	}
-
+	public void setPoint(Point temp){
+		this.current=temp;
+	}
+	public Point getPoint(){
+		return current;
+	}
+   public int getX(){
+	   return (int)this.current.getX();
+   }
+   
+   public int getY(){
+	   return (int)this.current.getY();
+   }
 	@Override
 	public void Move(Point destination)  throws IllegalMoveException{
 		// TODO Auto-generated method stub
@@ -38,7 +50,13 @@ public class King extends Pieces{
 
 	@Override
 	public boolean isMoveLegal(int x,int y) {
-		// TODO Auto-generated method stub
+		//check all single moves of a king 
+		if((Math.abs(getX()-x)==1&&getY()-y==0)||( Math.abs(getY()-y)==1&&getX()-x==0)||(Math.abs(getY()-x)==Math.abs(getX()-y)
+				//checks that diagonal is only one square 
+				&&Math.abs(getX()-x)==1))
+			return true;
+		// moves more than one space
+		else
 		return false;
 	}
 

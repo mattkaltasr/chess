@@ -10,6 +10,7 @@ public class Location {
 	{
 		this.name = location;
 		this.locaColor=color;
+		piece=null;
 	}
 	
 	public void assignPiece(Pieces piece){
