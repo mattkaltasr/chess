@@ -132,6 +132,10 @@ public class TestBoard {
 
 	public List<Pieces> piecesList = new ArrayList<Pieces>();
 	public List<Location> board = new ArrayList<Location>();
+	
+	//player list to keep track of current pieces player has left and for stalemate,check 
+	public List<Pieces>  blackPlayer=new ArrayList<Pieces>();
+	public List<Pieces>  whitePlayer=new ArrayList<Pieces>();
 
 	public TestBoard(){
 		addPieces();
@@ -159,22 +163,22 @@ public class TestBoard {
 			}
 		}
 		if(from == null || to == null){
-			throw new IllegalMoveException();
+			throw new IllegalMoveException("no pieces to move from there ,Try again");
 		}
 		
 		Pieces piece = from.piece;
 		
 		if(white){
 			if(piece.getColor() != PieceColor.White)
-				throw new IllegalMoveException();
+				throw new IllegalMoveException(" Cant Move ,try again ");
 		}
 		else{
 			if(piece.getColor() != PieceColor.Black)
-				throw new IllegalMoveException();
+				throw new IllegalMoveException(" Cant Move ,try again ");
 		}
 		
 		if(piece == null){
-			throw new IllegalMoveException();
+			throw new IllegalMoveException("no Game peice to move");
 		}
 		if(to.piece != null){
 			
@@ -194,26 +198,60 @@ public class TestBoard {
 	}
 	
 	private void addPieces() {
+		//add to board and players list 
 		piecesList.add(blackKing);
+		//add to players list 
+		blackPlayer.add(blackKing);
+		
 		piecesList.add(whiteKing);
+		//add to white list 
+		 whitePlayer.add(whiteKing);
 
 		piecesList.add(blackQueen);
+		//add to players list 
+		blackPlayer.add(blackQueen);
+		
 		piecesList.add(whiteQueen);
+		whitePlayer.add(whiteQueen);
 
 		piecesList.add(blackBishop1);
 		piecesList.add(blackBishop2);
+		//add to players list 
+		blackPlayer.add(blackBishop1);
+		blackPlayer.add(blackBishop2);
+		
 		piecesList.add(whiteBishop1);
 		piecesList.add(whiteBishop2);
+		//add to white list 
+		whitePlayer.add(whiteBishop1);
+		whitePlayer.add(whiteBishop2);
 
 		piecesList.add(blackKnight1);
 		piecesList.add(blackKnight2);
+		//add to players list 
+		blackPlayer.add(blackKnight1);
+		blackPlayer.add(blackKnight2);
+		
+		
+		
 		piecesList.add(whiteKnight1);
 		piecesList.add(whiteKnight2);
+		whitePlayer.add(whiteKnight1);
+		whitePlayer.add(whiteKnight2);
 
 		piecesList.add(blackRook1);
 		piecesList.add(blackRook2);
+		//add to players list 
+		blackPlayer.add(blackRook1);
+		blackPlayer.add(blackRook2);
+		
+		
+		
 		piecesList.add(whiteRook1);
 		piecesList.add(whiteRook2);
+		// add white players pieces
+		whitePlayer.add(whiteRook1);
+		whitePlayer.add(whiteRook2);
 
 		piecesList.add(blackPawn1);
 		piecesList.add(blackPawn2);
@@ -222,7 +260,20 @@ public class TestBoard {
 		piecesList.add(blackPawn5);
 		piecesList.add(blackPawn6);
 		piecesList.add(blackPawn7);
+		
+		//add to players list 
 		piecesList.add(blackPawn8);
+		blackPlayer.add(blackPawn1);
+		blackPlayer.add(blackPawn2);
+		blackPlayer.add(blackPawn3);
+		blackPlayer.add(blackPawn4);
+		blackPlayer.add(blackPawn5);
+		blackPlayer.add(blackPawn6);
+		blackPlayer.add(blackPawn7);
+		blackPlayer.add(blackPawn8);
+		
+		
+		
 		piecesList.add(whitePawn1);
 		piecesList.add(whitePawn2);
 		piecesList.add(whitePawn3);
@@ -231,6 +282,17 @@ public class TestBoard {
 		piecesList.add(whitePawn6);
 		piecesList.add(whitePawn7);
 		piecesList.add(whitePawn8);
+		
+		// add white pawns to white players list 
+		whitePlayer.add(whitePawn1);
+		whitePlayer.add(whitePawn2);
+		whitePlayer.add(whitePawn3);
+		whitePlayer.add(whitePawn4);
+		whitePlayer.add(whitePawn5);
+		whitePlayer.add(whitePawn6);
+		whitePlayer.add(whitePawn7);
+		whitePlayer.add(whitePawn8);
+		
 	}
 	private void addLocations(){
 		board.add(a1);

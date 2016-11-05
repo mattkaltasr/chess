@@ -50,11 +50,15 @@ public class Pawn extends Pieces{
 
 	@Override
 	public boolean isMoveLegal(int movex,int movey ) {
+	  int tempx=(int) this.current.getX();
+	  int tempy=(int) this.current.getY();
 		// TODO Auto-generated method stub
-		int row=Math.abs(Integer.parseInt(position_y)-movey);
-		int column=Math.abs(Integer.parseInt(position_x)-movex);
+		int row=Math.abs(tempy-movey);
+		int column=Math.abs(tempx-movex);
 		if (counter<1)
 			return ((row==2)&&(column==0));
+		if (counter>1)
+			return ((row==1)&&(column==0));
 		
 		return false;
 	}
