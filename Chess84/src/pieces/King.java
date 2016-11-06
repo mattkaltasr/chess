@@ -16,9 +16,10 @@ public class King extends Pieces{
 		current=start;
 		
 	}
-	public King(PieceColor color, Location location){
+	public King(PieceColor color, Location location,Point start){
 		super(color,location);
-		
+		counter=0;
+		current=start;
 	}
 	
 	@Override

@@ -24,10 +24,28 @@ public class Rook extends Pieces{
 		this.board=board;
 	}
 	
-	public Rook(PieceColor color, Location location){
+	public Rook(PieceColor color, Location location,Point start){
 		super(color,location);
+		setPoint(start);
 		
 	}
+	
+public void setPoint(Point temp){
+    	
+    	this.current=temp;
+    }
+    
+    public Point getPoint(){
+		return current;
+	}
+   public int getX(){
+	   return (int)this.current.getX();
+   }
+   
+   public int getY(){
+	   return (int)this.current.getY();
+   }
+    
 
 	@Override
 	public String getCharRepresentation() {

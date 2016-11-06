@@ -16,9 +16,9 @@ public class Queen extends Pieces{
 	}
 
 
-	public Queen(PieceColor color, Location location){
+	public Queen(PieceColor color, Location location,Point start){
 		super(color,location);
-		
+		setPoint(start);
 	}
 
 	@Override
@@ -29,6 +29,22 @@ public class Queen extends Pieces{
 		else 
 			return " wQ ";
 	}
+	
+	
+	
+	public void setPoint(Point temp){
+		this.current=temp;
+	}
+	public Point getPoint(){
+		return current;
+	}
+   public int getX(){
+	   return (int)this.current.getX();
+   }
+   
+   public int getY(){
+	   return (int)this.current.getY();
+   }
 
 	@Override
 	public void Move(Point destination) throws IllegalMoveException{

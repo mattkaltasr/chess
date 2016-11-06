@@ -94,45 +94,45 @@ public class TestBoard {
 	
 
 	// KINGS
-	 King blackKing = new King(PieceColor.Black, e1);
-	 
-	King whiteKing = new King(PieceColor.White, e8);
+	 King blackKing = new King(PieceColor.Black, e1,new Point(4,1));
+	
+	King whiteKing = new King(PieceColor.White, e8,new Point(4,8));
 	
 	// QUEENS
-	Queen blackQueen = new Queen(PieceColor.Black, d1);
-	Queen whiteQueen = new Queen(PieceColor.White, d8);
+	Queen blackQueen = new Queen(PieceColor.Black, d1,new Point(3,1));
+	Queen whiteQueen = new Queen(PieceColor.White, d8,new Point(3,8));
 	// BISHOPS
-	Bishop blackBishop1 = new Bishop(PieceColor.Black, c1);
-	Bishop blackBishop2 = new Bishop(PieceColor.Black, f1);
-	Bishop whiteBishop1 = new Bishop(PieceColor.White, c8);
-	Bishop whiteBishop2 = new Bishop(PieceColor.White, f8);
+	Bishop blackBishop1 = new Bishop(PieceColor.Black, c1,new Point(2,1));
+	Bishop blackBishop2 = new Bishop(PieceColor.Black, f1,new Point(5,1));
+	Bishop whiteBishop1 = new Bishop(PieceColor.White, c8,new Point(2,8));
+	Bishop whiteBishop2 = new Bishop(PieceColor.White, f8,new Point(5,8));
 	// KNIGHTS
-	Knight blackKnight1 = new Knight(PieceColor.Black, b1);
-	Knight blackKnight2 = new Knight(PieceColor.Black, g1);
-	Knight whiteKnight1 = new Knight(PieceColor.White, b8);
-	Knight whiteKnight2 = new Knight(PieceColor.White, g8);
+	Knight blackKnight1 = new Knight(PieceColor.Black, b1,new Point(1,1));
+	Knight blackKnight2 = new Knight(PieceColor.Black, g1,new Point(6,1));
+	Knight whiteKnight1 = new Knight(PieceColor.White, b8,new Point(1,8));
+	Knight whiteKnight2 = new Knight(PieceColor.White, g8,new Point(6,8));
 	// ROOKS
-	Rook blackRook1 = new Rook(PieceColor.Black, a1);
-	Rook blackRook2 = new Rook(PieceColor.Black, h1);
-	Rook whiteRook1 = new Rook(PieceColor.White, a8);
-	Rook whiteRook2 = new Rook(PieceColor.White, h8);
+	Rook blackRook1 = new Rook(PieceColor.Black, a1,new Point(0,1));
+	Rook blackRook2 = new Rook(PieceColor.Black, h1,new Point(7,1));
+	Rook whiteRook1 = new Rook(PieceColor.White, a8,new Point(0,8));
+	Rook whiteRook2 = new Rook(PieceColor.White, h8,new Point(7,8));
 	// PAWNS
-	Pawn blackPawn1 = new Pawn(PieceColor.Black, a2);
-	Pawn blackPawn2 = new Pawn(PieceColor.Black, b2);
-	Pawn blackPawn3 = new Pawn(PieceColor.Black, c2);
-	Pawn blackPawn4 = new Pawn(PieceColor.Black, d2);
-	Pawn blackPawn5 = new Pawn(PieceColor.Black, e2);
-	Pawn blackPawn6 = new Pawn(PieceColor.Black, f2);
-	Pawn blackPawn7 = new Pawn(PieceColor.Black, g2);
-	Pawn blackPawn8 = new Pawn(PieceColor.Black, h2);
-	Pawn whitePawn1 = new Pawn(PieceColor.White, a7);
-	Pawn whitePawn2 = new Pawn(PieceColor.White, b7);
-	Pawn whitePawn3 = new Pawn(PieceColor.White, c7);
-	Pawn whitePawn4 = new Pawn(PieceColor.White, d7);
-	Pawn whitePawn5 = new Pawn(PieceColor.White, e7);
-	Pawn whitePawn6 = new Pawn(PieceColor.White, f7);
-	Pawn whitePawn7 = new Pawn(PieceColor.White, g7);
-	Pawn whitePawn8 = new Pawn(PieceColor.White, h7);
+	Pawn blackPawn1 = new Pawn(PieceColor.Black, a2,new Point(0,2));
+	Pawn blackPawn2 = new Pawn(PieceColor.Black, b2,new Point(1,2));
+	Pawn blackPawn3 = new Pawn(PieceColor.Black, c2,new Point(2,2));
+	Pawn blackPawn4 = new Pawn(PieceColor.Black, d2,new Point(3,2));
+	Pawn blackPawn5 = new Pawn(PieceColor.Black, e2,new Point(4,2));
+	Pawn blackPawn6 = new Pawn(PieceColor.Black, f2,new Point(5,2));
+	Pawn blackPawn7 = new Pawn(PieceColor.Black, g2,new Point(6,2));
+	Pawn blackPawn8 = new Pawn(PieceColor.Black, h2,new Point(7,2));
+	Pawn whitePawn1 = new Pawn(PieceColor.White, a7,new Point(0,7));
+	Pawn whitePawn2 = new Pawn(PieceColor.White, b7,new Point(1,7));
+	Pawn whitePawn3 = new Pawn(PieceColor.White, c7,new Point(2,7));
+	Pawn whitePawn4 = new Pawn(PieceColor.White, d7,new Point(3,7));
+	Pawn whitePawn5 = new Pawn(PieceColor.White, e7,new Point(4,7));
+	Pawn whitePawn6 = new Pawn(PieceColor.White, f7,new Point(5,7));
+	Pawn whitePawn7 = new Pawn(PieceColor.White, g7,new Point(6,7));
+	Pawn whitePawn8 = new Pawn(PieceColor.White, h7,new Point(7,7));
 
 	public List<Pieces> piecesList = new ArrayList<Pieces>();
 	public List<Location> board = new ArrayList<Location>();
@@ -192,15 +192,23 @@ public class TestBoard {
 				if(piece.getCharRepresentation().contains("b") && to.piece.getCharRepresentation().contains("b")){
 						throw new IllegalMoveException();		}
 		}
-		//Check if move is legal
+		/*Check if move is legal
 			if(white){
 				if(notInCheck((int)whiteKingplace.getX(),(int)whiteKingplace.getY()))
 					throw new IllegalMoveException("Can't move into check");
 				else 
 					notInCheck((int)blackKingPlace.getX(),(int)blackKingPlace.getY());
 				throw new IllegalMoveException("Can't move into check");
-			}
+//			}*/
 			piece.location = to;
+			//removal of piece from players array 
+			if(from.piece!=null){
+				if(from.piece.getColor()==PieceColor.White)
+					whitePlayer.remove(from.piece)	;
+				else
+					blackPlayer.remove(from.piece);
+					
+			}
 			from.piece = null;
 			to.piece = piece;
 		
@@ -501,7 +509,7 @@ public class TestBoard {
 		
 		
 		for (Pieces temp :whitePlayer)
-			
+		if(temp.getCharRepresentation()!=" wK ")	
 		if( temp.isMoveLegal(kingX,Kingy)){
 			
 			return true;}

@@ -18,10 +18,37 @@ public class Knight extends Pieces {
 	}
 
 
-	public Knight(PieceColor color, Location location){
+	public Knight(PieceColor color, Location location,Point start){
 		super(color,location);
+		counter=0;
+		
+		current=start;
 	}
 
+	public void setPoint(Point temp){
+		this.current=temp;
+	}
+	public Point getPoint(){
+		return current;
+	}
+   public int getX(){
+	   return (int)this.current.getX();
+   }
+   
+   public int getY(){
+	   return (int)this.current.getY();
+   }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public String getCharRepresentation() {
 		// TODO Auto-generated method stub

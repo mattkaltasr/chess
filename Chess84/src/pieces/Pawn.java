@@ -19,9 +19,9 @@ public class Pawn extends Pieces{
 		current=start;
 	}
 
-	public Pawn(PieceColor color, Location location){
+	public Pawn(PieceColor color, Location location,Point start){
 		super(color,location);
-		
+		setPoint(start);
 	}
 
 	@Override
@@ -40,6 +40,22 @@ public class Pawn extends Pieces{
 		
 
 	}
+	
+	public void setPoint(Point temp){
+		this.current=temp;
+	}
+	public Point getPoint(){
+		return current;
+	}
+   public int getX(){
+	   return (int)this.current.getX();
+   }
+   
+   public int getY(){
+	   return (int)this.current.getY();
+   }
+	
+	
    // move being done in board class
 	
 	@Override

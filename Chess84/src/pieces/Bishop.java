@@ -19,12 +19,36 @@ public class Bishop extends Pieces{
 
 	}
 
-	public Bishop(PieceColor color, Location location){
+	public Bishop(PieceColor color, Location location,Point start){
 		super(color,location);
-		
+	     setPoint(start);
 
 	}
-
+    public void setPoint(Point temp){
+    	
+    	this.current=temp;
+    }
+    
+    public Point getPoint(){
+		return current;
+	}
+   public int getX(){
+	   return (int)this.current.getX();
+   }
+   
+   public int getY(){
+	   return (int)this.current.getY();
+   }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 	@Override
 	public String getCharRepresentation() {
 		// TODO Auto-generated method stub
@@ -45,11 +69,11 @@ public class Bishop extends Pieces{
 	@Override
 	public boolean isMoveLegal(int x,int y) {
 		//commented out till methods are made 
-		//if (pathnotblocked()&&destNotColor())
-		//return Math.abs((this.current.getX())-x) == Math.abs((this.current.getY())-y);
+		
+		return Math.abs((this.current.getX())-x) == Math.abs((this.current.getY())-y);
 		// TODO Auto-generated method stub
 		
-		return false;
+		
 	}
 	public String toString() {
 		return getCharRepresentation();
