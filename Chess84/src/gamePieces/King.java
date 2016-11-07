@@ -1,68 +1,83 @@
-package pieces;
+package gamePieces;
 
-import java.awt.Point;
-
-import game.Location;
-
+/**
+ * @author matt kalita and Yigit Gunore
+ *
+ */
 public class King extends Pieces{
 	
-
-	public int counter;
-	Point current;
-	
-	public King(PieceColor color, String[] position,Point start){
-		super(color,position);
-		counter=0;
-		current=start;
-		
-	}
-	public King(PieceColor color, Location location,Point start){
-		super(color,location);
-		counter=0;
-		current=start;
+	/**
+	 * constructor for king creates a king instance instantiates the parameters 
+	 * @param row  of the king 
+	 * @param column column representation of the king 
+	 * @param color of the king piece
+	 */
+	public King(int row, int column, PieceColor color){
+		super(row, column, PieceType.KING, color);
 	}
 	
-	@Override
-	public String getCharRepresentation() {
-		// TODO Auto-generated method stub
-		if (this.color==PieceColor.Black)
-		return " bK ";
-		else 
-			return " wK ";
+	/**
+	 * check King move to see if it can be done 
+	 * @param row
+	 * @param column
+	 * @throws IllegalMoveException if no good 
+	 */
+	
+	public void checkMove(int row, int column) throws IllegalMoveException {
+		super.islegal(row, column);
+		if(row < getRow() - 1 || row > getRow() + 1 || column < getCol() - 1 || column > getCol() + 1){
+			throw new IllegalMoveException();
+		}
 	}
-	public void setPoint(Point temp){
-		this.current=temp;
-	}
-	public Point getPoint(){
-		return current;
-	}
-   public int getX(){
-	   return (int)this.current.getX();
-   }
-   
-   public int getY(){
-	   return (int)this.current.getY();
-   }
-	@Override
-	public void Move(Point destination)  throws IllegalMoveException{
-		// TODO Auto-generated method stub
-		
-	}
+	
+	
+	
+	/**
+	 * 
+	 * method inherited by abstract class 
+	 * @param krow kings row 
+	 * @param column kings column 
+	 * @throws IllegalMoveException
+	 * 
+	 * 
+	 */
+	
 
 	@Override
-	public boolean isMoveLegal(int x,int y) {
-		//check all single moves of a king 
-		if((Math.abs(getX()-x)==1&&getY()-y==0)||( Math.abs(getY()-y)==1&&getX()-x==0)||(Math.abs(getY()-x)==Math.abs(getX()-y)
-				//checks that diagonal is only one square 
-				&&Math.abs(getX()-x)==1))
+	public void move(int krow, int column) throws IllegalMoveException {
+		// TODO Auto-generated method stub
+		//Lambda calling super method of move bi-function giving it tow ints and getting two returns to see if it can move 
+		super.movePiece(krow, column, (r, c) -> {
+			if (r == getRow() && (c == getCol() + 2 || c == getCol() - 2)) {
+				if (hasMoved()) {
+					return false;
+				}
+				return true;
+			}
+			else if(r < getRow() - 1 || r > getRow() + 1 || c < getCol() - 1 || c > getCol() + 1){
+				return false;
+			}
 			return true;
-		// moves more than one space
-		else
-		return false;
+		});
+		
 	}
-
 	
+	
+	/**
+	 *  toString override of objects method 
+	 *  returns the char representation as a string of a king 
+	 *  @return String 
+	 */
 	public String toString() {
-		return getCharRepresentation();
+		char ColorChar;
+		if (getColor() == PieceColor.White) {
+			ColorChar = 'w';
+		}		else {
+			ColorChar = 'b';
+		}
+		return ColorChar + "K";
 	}
+	
+	
+
 }
