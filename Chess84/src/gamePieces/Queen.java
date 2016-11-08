@@ -1,65 +1,81 @@
-package pieces;
+package gamePieces;
 
-import java.awt.Point;
 
-import game.Location;
 
+/**
+ * @author matt kalita and Yigit Gungor
+ *
+ */
 public class Queen extends Pieces{
-	
-	public int counter;
-	Point current;
-	
-	public Queen(PieceColor color, String[] position,Point start){
-		super(color,position);
-		counter=0;
-		current=start;
-	}
+	/**
+	 * constructor for queen piece 
+	 * @param row sets row 	
+	 * @param col  sets column 	
+	 * @param color sets pieceColor per the emnum 
+	 */
 
-
-	public Queen(PieceColor color, Location location,Point start){
-		super(color,location);
-		setPoint(start);
+	
+	public Queen(int row, int col, PieceColor color){
+		super(row, col, PieceType.QUEEN, color);
 	}
+	
+	
+	
+	/**
+	 *  checks to see if legal move 
+	 * @param row
+	 * @param column
+	 * @throws IllegalMoveException
+	 */
+	public void checkMove(int row, int column) throws IllegalMoveException {
+		super.islegal(row, column);
+		if(row != getRow() && column != getCol()){
+			int dr = row - getRow();
+			if (!(column == getCol() + dr || column == getCol() - dr)) {
+				throw new IllegalMoveException();
+			}
+		}
+	}
+	
+	
+	
+	
+	/**
+	 *  method from super abstact overridin 
+	 *  @param row gets row int 
+	 *  @param column 
+	 *  @throws illegalMove Exception if cant move 
+	 *  
+	 *  
+	 *  
+	 */
 
 	@Override
-	public String getCharRepresentation() {
+	public void move(int row, int column) throws IllegalMoveException {
 		// TODO Auto-generated method stub
-		if(this.color==PieceColor.Black)
-		return " bQ ";
-		else 
-			return " wQ ";
+		super.movePiece(row, column, (r, c) -> {
+			if(r != getRow() && c != getCol()){
+				int dr = row - getRow();
+				return (column == getCol() + dr || column == getCol() - dr);
+			}
+			return true;
+		});
 	}
 	
 	
 	
-	public void setPoint(Point temp){
-		this.current=temp;
-	}
-	public Point getPoint(){
-		return current;
-	}
-   public int getX(){
-	   return (int)this.current.getX();
-   }
-   
-   public int getY(){
-	   return (int)this.current.getY();
-   }
-
-	@Override
-	public void Move(Point destination) throws IllegalMoveException{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean isMoveLegal(int x,int y) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
+	
+	/**
+	 * toString override of objects to string 
+	 * @return String rep of char values of queen 
+	 * 
+	 */
 	public String toString() {
-		return getCharRepresentation();
+		char colorCharr;
+		if (getColor() == PieceColor.White) {	
+			colorCharr = 'w';		}
+		else {			colorCharr = 'b';		}
+		return colorCharr + "Q";
 	}
 	
 }

@@ -1,81 +1,73 @@
-package pieces;
+package gamePieces;
+/**
+ * @author matt kalita and Yigit Gungor 
+ *
+ */
+public class Knight extends Pieces{
 
-
-import java.awt.Point;
-
-import game.Location;
-import game.Location.*;
-
-
-public class Knight extends Pieces {
-	public int counter;
-	Point current;
-	
-	public Knight(PieceColor color, String[] position,Point start){
-		super(color,position);
-		counter=0;
-		current=start;
+	/**
+	 * Constructor for Knight 
+	 * @param row sets parm for Knight 
+	 * @param col sets parm for Knight 
+	 * 
+	 * @param color  sets PieceColor for knight from enum 
+	 */
+	public Knight(int row, int col, PieceColor color){
+		super(row, col, PieceType.KNIGHT, color);
 	}
 
-
-	public Knight(PieceColor color, Location location,Point start){
-		super(color,location);
-		counter=0;
-		
-		current=start;
-	}
-
-	public void setPoint(Point temp){
-		this.current=temp;
-	}
-	public Point getPoint(){
-		return current;
-	}
-   public int getX(){
-	   return (int)this.current.getX();
-   }
-   
-   public int getY(){
-	   return (int)this.current.getY();
-   }
 	
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * method to move the Knight calls super bifunction for test 
+	 * @param row 
+	 * @param column 
+	 */
 	@Override
-	public String getCharRepresentation() {
+	public void move(int row, int column) throws IllegalMoveException {
 		// TODO Auto-generated method stub
-		if (this.color==PieceColor.Black)
-		return " bN ";
-		else 
-			return " wN ";
+		// checks the kNIGHTS UNIQUE PATTERN of moving 
+		super.movePiece(row, column, (r, c) -> {
+			if((Math.abs(r - getRow()) == 2 && Math.abs(c - getCol()) == 1) || 
+					(Math.abs(r - getRow()) == 1 && Math.abs(c - getCol()) == 2)){
+				return true;
+			}
+			return false;
+		});
 	}
-
-	@Override
-	public void Move(Point destination)  throws IllegalMoveException{
-		// TODO Auto-generated method stub
-		
+	
+	/**
+	 * method to check if move is legal 
+	 * @param row
+	 * @param column
+	 * @throws IllegalMoveException throws this if not 
+	 */
+	public void checkMove(int row, int column) throws IllegalMoveException {
+		super.islegal(row, column);
+		if(!((Math.abs(row - getRow()) == 2 && Math.abs(column - getCol()) == 1) || (Math.abs(row - getRow()) == 1 && Math.abs(column - getCol()) == 2))){
+			throw new IllegalMoveException();
+		}
 	}
-
-	@Override
-	public boolean isMoveLegal(int x,int y) {
-		// use pythagoras to ensure that a move makes a right-angled
-	    // triangle move with sides of 1 and 2. 1-squared + 2 squared is 5.
-		int deltar=(int) ((this.current.getX())-x);
-		int deltac=(int)((this.current.getY())-y);
-		return 5==deltar*deltar+deltac*deltac;
-	}
-
 	
 	
+	/**
+	 * objects override of toString method 
+	 * @return String returns the Char rep in a string of the Knight 
+	 */
 	public String toString() {
-		return getCharRepresentation();
+		char colorCharr;
+		if (getColor() == PieceColor.White) {
+			colorCharr = 'w';		}
+		else {			colorCharr = 'b';		}
+		return colorCharr + "N";
 	}
+	
+	
+	
+	
+	
+	
 }
+	

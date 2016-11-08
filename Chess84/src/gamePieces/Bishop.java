@@ -1,81 +1,74 @@
-package pieces;
+package gamePieces;
 
-
-import java.awt.Point;
-
-import game.Location;
-
-
-public class Bishop extends Pieces{
-	
-	Point current;
+/**
+ * @author matt kalita and Yigit Gungor 
+ *
+ */
+public class Bishop extends Pieces {
 	
 	
-	
-	public Bishop(PieceColor color, String[] position,Point start){
-		super(color,position);
-
-		current=start;
-
+	/**
+	 * Constructor for Bishop 
+	 * @param row receives and instantiate the Bishops field 
+	 * @param col receives and instantiate the Bishops field 
+	 * @param color receives and instantiate the Bishops field for PieceColor enum 
+	 */
+	public Bishop(int row, int col, PieceColor color){
+		super(row, col, PieceType.BISHOP, color);
 	}
 
-	public Bishop(PieceColor color, Location location,Point start){
-		super(color,location);
-	     setPoint(start);
-
+	/**
+	 * used to check if move is legal 
+	 * @param row
+	 * @param column
+	 * @throws IllegalMoveException if move is not able to be done 
+	 * 
+	 */
+	public void checkMove(int row, int column) throws IllegalMoveException {
+		super.islegal(row, column);
+		int dr = row - getRow();
+		if (!(column == getCol() + dr || column == getCol() - dr)) {
+			throw new IllegalMoveException();
+		}
 	}
-    public void setPoint(Point temp){
-    	
-    	this.current=temp;
-    }
-    
-    public Point getPoint(){
-		return current;
-	}
-   public int getX(){
-	   return (int)this.current.getX();
-   }
-   
-   public int getY(){
-	   return (int)this.current.getY();
-   }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * method to move the Bishop 
+	 * @param row used to call super bifunction 
+	 * @param column used to call super bifunction 
+	 * @throws IllegalMoveException if move is not valid in super 
+	 */
 	@Override
-	public String getCharRepresentation() {
+	public void move(int row, int column) throws IllegalMoveException {
 		// TODO Auto-generated method stub
-		if(this.color==PieceColor.Black)
-		return " bB ";
-		else 
-			return " wB ";
-					
-	}
-
-	@Override
-	public void Move(Point destination) throws IllegalMoveException{
-		// TODO Auto-generated method stub
-		
+		super.movePiece(row, column, (r, c) -> {
+			int dr = row - getRow();
+			return (column == getCol() + dr || column == getCol() - dr);
+		});
 	}
 	
+	
+	 /**
+	  * toString override of objects method 
+	  * @return String
+	  *  returns Char rep of Bishop in a String 
+	  */
+		public String toString() {
+			char color_letter;
+			if (getColor() == PieceColor.White) {
+				color_letter = 'w';
+			}
+			else {color_letter = 'b';
+			}
+			return color_letter + "B";
+		}
 
-	@Override
-	public boolean isMoveLegal(int x,int y) {
-		//commented out till methods are made 
-		
-		return Math.abs((this.current.getX())-x) == Math.abs((this.current.getY())-y);
-		// TODO Auto-generated method stub
-		
-		
-	}
-	public String toString() {
-		return getCharRepresentation();
-	}
 }

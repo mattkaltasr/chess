@@ -1,168 +1,78 @@
-package pieces;
-
-import java.awt.Point;
-
-import game.Board;
-import game.Location;
-
-public class Rook extends Pieces{
+package gamePieces;
+/**
+ * @author matt kalita and Yigit Gungor
+ *
+ */
+public class Rook extends Pieces {
 	
-	public int counter;
-	Point current;
-	Board board;
+	/**
+	 *  Constructor for Rook 
+	 * @param row   instantiates rooks initial row 
+	 * @param column instantiates rooks initial column 
+	 * @param color  instantiates rooks PieceColor from enum 
+	 */
 	
-	public Rook(PieceColor color, String[] position,Point start){
-		super(color,position);
-		counter=0;
-		current=start;
+	public Rook(int row, int column, PieceColor color){
+		super(row, column, PieceType.ROOK, color);
 	}
 
-	public Rook(PieceColor color, String[] position,Point start, Board board){
-		super(color,position);
-		counter=0;
-		current=start;
-		this.board=board;
-	}
-	
-	public Rook(PieceColor color, Location location,Point start){
-		super(color,location);
-		setPoint(start);
-		
-	}
-	
-public void setPoint(Point temp){
-    	
-    	this.current=temp;
-    }
-    
-    public Point getPoint(){
-		return current;
-	}
-   public int getX(){
-	   return (int)this.current.getX();
-   }
-   
-   public int getY(){
-	   return (int)this.current.getY();
-   }
-    
-
-	@Override
-	public String getCharRepresentation() {
-		// TODO Auto-generated method stub
-		if(this.color==PieceColor.Black)
-		return " bR ";
-		else
-			return" wR ";
-	}
-
-	@Override
-	public void Move(Point destination) throws IllegalMoveException{
-			
-		if(destination.x != current.x && destination.y != current.y){
-			//Not going straight.
+	/**
+	 * checks to see if legal move can be made 
+	 * @param row
+	 * @param col
+	 * @throws IllegalMoveException throws this if it is not legal to move 
+	 */
+	public void checkMove(int row, int col) throws IllegalMoveException {
+		super.islegal(row, col);
+		if(row != getRow() && col != getCol()){
 			throw new IllegalMoveException();
 		}
-
-		Boolean isPathFree = true;
-		if(destination.x != current.x){			
-			if(destination.x > current.x)
-			{
-				for(Pieces piece : board.piecesList)
-				{
-					int pointOnPathX = Integer.parseInt(piece.position_x);
-					int pointOnPathY = Integer.parseInt(piece.position_y);
-					
-					if(pointOnPathY != current.y){
-						continue;
-					}
-					if(pointOnPathX > current.x && pointOnPathX < destination.x)
-					{
-						isPathFree = false;
-						break;
-					}
-					
-				}
-					
-			}			
-			else if(destination.x < current.x)
-			{
-				for(Pieces piece : board.piecesList)
-				{
-					int pointOnPathX = Integer.parseInt(piece.position_x);
-					int pointOnPathY = Integer.parseInt(piece.position_y);
-					
-					if(pointOnPathY != current.y){
-						continue;
-					}
-					if(pointOnPathX < current.x && pointOnPathX > destination.x)
-					{
-						isPathFree = false;
-						break;
-					}
-					
-				}
-					
-			}
-			
-		}		
-		else if(destination.y != current.y){
-			if(destination.y > current.y)
-			{
-				for(Pieces piece : board.piecesList)
-				{
-					int pointOnPathX = Integer.parseInt(piece.position_x);
-					int pointOnPathY = Integer.parseInt(piece.position_y);
-					
-					if(pointOnPathX != current.x){
-						continue;
-					}
-					if(pointOnPathY > current.y && pointOnPathY < destination.y)
-					{
-						isPathFree = false;
-						break;
-					}
-					
-				}
-					
-			}			
-			else if(destination.x < current.x)
-			{
-				for(Pieces piece : board.piecesList)
-				{
-					int pointOnPathX = Integer.parseInt(piece.position_x);
-					int pointOnPathY = Integer.parseInt(piece.position_y);
-					
-					if(pointOnPathX != current.x){
-						continue;
-					}
-					if(pointOnPathY < current.y && pointOnPathY > destination.y)
-					{
-						isPathFree = false;
-						break;
-					}
-					
-				}
-					
-			}
-		}
-		
-		if(isPathFree){
-			this.current = destination;
-			this.counter++;
-		}
-		
 	}
-
+	
+	
+	
+	
+	/**
+	 * method to move the rook 
+	 * @param row receives the row 
+	 * @param column receives the column 
+	 * sends the two parm to the super via lambda call of bifunction 
+	 * @throws illegalMoveException if move can't be done 
+	 */
 	@Override
-	public boolean isMoveLegal(int x,int y) {
+	public void move(int row, int column) throws IllegalMoveException {
 		// TODO Auto-generated method stub
-		return false;
+		
+		super.movePiece(row, column, (r, c) -> {
+			if(r != getRow() && c != getCol()){
+				return false;
+			}
+			return true;		});
+		
+		
+		
 	}
-	
-	
-	public String toString() {
-		return getCharRepresentation();
-	}
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * void override of objects toString method
+ * @return returns a string representation of the Char for rook 
+ */
+public String toString() {
+	char colorCharr;
+	if (getColor() == PieceColor.White) {
+		colorCharr = 'w';		}
+	else {			colorCharr = 'b';		}
+	return colorCharr + "R";
+}
 
 }

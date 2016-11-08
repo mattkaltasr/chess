@@ -1,92 +1,84 @@
-package pieces;
+package gamePieces;
 
 
-import java.awt.Point;
 
-import game.Location;
+/**
+ * @author matt kalita and Yigit Gungor
+ *
+ */
+public class Pawn extends Pieces {
 
-
-public class Pawn extends Pieces{
 	
-	//used to count moves 
+	/**
+	 * Pawns Constructor instantiates Pawns fields 
+	 * @param row  used for pawns field 
+	 * @param col used for pawns initial position 
+	 * @param color sets PieceColor enum for game play 
+	 */
 	
-	public int counter;
-	Point current;
-	
-	public Pawn(PieceColor color, String[] position,Point start){
-		super(color,position);
-		counter=0;
-		current=start;
+	public Pawn(int row, int col, PieceColor color){
+		super(row, col, PieceType.PAWN, color);
 	}
 
-	public Pawn(PieceColor color, Location location,Point start){
-		super(color,location);
-		setPoint(start);
-	}
-
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * move method for pawn asumes that all moves are legal if not blocked and not same color 
+	 * @param row used to move path 
+	 * @param column used for new path 
+	 * @throws IllegalMoveException used if cant move due to capture not possible or check or blocked path 
+	 */
 	@Override
-	public String getCharRepresentation() {
-		// TODO Auto-generated method stub
-		if(this.color==PieceColor.Black)
-
-		return " bP ";
-
-	
-
-		else 
-
-			return" wP ";
-
-		
-
-	}
-	
-	public void setPoint(Point temp){
-		this.current=temp;
-	}
-	public Point getPoint(){
-		return current;
-	}
-   public int getX(){
-	   return (int)this.current.getX();
-   }
-   
-   public int getY(){
-	   return (int)this.current.getY();
-   }
-	
-	
-   // move being done in board class
-	
-	@Override
-	public void Move(Point destination)  throws IllegalMoveException{
+	public void move(int row, int column) throws IllegalMoveException {
 		// TODO Auto-generated method stub
 		
+		//assumes that a pawn can move in diagonal for the captures 
 		
-	}
-
-	@Override
-	public boolean isMoveLegal(int movex,int movey ) {
-	  int tempx=(int) this.current.getX();
-	  int tempy=(int) this.current.getY();
-		// TODO Auto-generated method stub
-		int row=Math.abs(tempy-movey);
-		int column=Math.abs(tempx-movex);
-		if (counter<1)
-			return ((row==2)&&(column==0));
-		if (counter>1)
-			return ((row==1)&&(column==0));
-		//need to check if diagonal if location is opposite color 
-		
-		return checkDiagnalMove(tempx,tempy, movex, movey);
-	}
-	public Boolean checkDiagnalMove(int tempx,int tempy,int movex,int movey){
-		  
-		if (Math.abs(tempx-movex)==1&&Math.abs(tempy-movey)==1)
-			return true;
-		return false ;
-	}
+		super.movePiece(row, column, (r, c) -> {
+		if(getColor() == PieceColor.Black){
+			if(r < getRow()){
+				return false;
+			}
+			if(r == getRow() + 1 && Math.abs(c - getCol()) <= 1){
+				return true;
+			}
+			if(!hasMoved() && r == getRow() + 2 && c == getCol()){
+				return true;
+			}
+			return false;
+		} else {
+			if(r > getRow()){
+				return false;
+			}
+			if(r == getRow() - 1 && Math.abs(c - getCol()) <= 1){
+				return true;
+			}
+			if(!hasMoved() && r == getRow() - 2 && c == getCol()){
+				return true;
+			}
+			return false;
+		}
+	});
+}
+	
+	
+	/**
+	 * override of objects toString method
+	 * @return String   returns a string of Pawns Char rep 
+	 */
 	public String toString() {
-		return getCharRepresentation();
+		char colorCharr;
+		if (getColor() == PieceColor.White) {
+			colorCharr = 'w';		}
+		else {			colorCharr = 'b';		}
+		return colorCharr + "P";
 	}
+	
+	
+	
 }
