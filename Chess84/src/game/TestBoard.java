@@ -22,16 +22,14 @@ public class TestBoard {
 	static boolean end = false; // if end of game it will be true 
 	
 	public TestBoard(){
-		addPieces();
-		addLocations();
-		drawBoard();
+		
 	}
 	
 
 	//Array takes [ROW][COL] but chess positions are [COL][ROW]
 	//So board[y][x] y=a x=2 is actually A2 on the board
 	
-	public void changePosition(String fromLocation, String toLocation,boolean white) throws IllegalMoveException{
+	public static void movePiece(String fromLocation, String toLocation,boolean white) throws IllegalMoveException{
 		
 
 		Location from = null;
@@ -226,7 +224,7 @@ public class TestBoard {
 			if (fromRow > toRow) {
 				//going left
 				row = fromRow - 1;
-				if (fromcolumn > toColumn) {
+								if (fromcolumn > toColumn) {
 					column = fromcolumn - 1;
 					while (row > toRow && column > toColumn) {
 						pathSquare = board.getSquare(row, column);
