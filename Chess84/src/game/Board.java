@@ -81,50 +81,33 @@ public class Board {
 	
 	//initializing pieces
 	
-	public void initialize(){
-	// KINGS
-	King blackKing = new King(PieceColor.Black, new String[] { "e", "1" }, new Point(4,1));
-	King whiteKing = new King(PieceColor.White, new String[] { "e", "8" }, new Point(4,8));
-	// QUEENS
-	Queen blackQueen = new Queen(PieceColor.Black, new String[] { "d", "1" }, new Point(3,1));
-	Queen whiteQueen = new Queen(PieceColor.White, new String[] { "d", "8" }, new Point(3,8));
-	// BISHOPS
-
-	Bishop blackBishop1 = new Bishop(PieceColor.Black, new String[] { "c", "8" },new Point(2,8));
-	Bishop blackBishop2 = new Bishop(PieceColor.Black, new String[] { "f", "8" },new Point(5,8));
-	Bishop whiteBishop1 = new Bishop(PieceColor.White, new String[] { "c", "1" },new Point(2,1));
-	Bishop whiteBishop2 = new Bishop(PieceColor.White, new String[] { "f", "1" },new Point(5,1));
-
-	// KNIGHTS
-	Knight blackKnight1 = new Knight(PieceColor.Black, new String[] { "b", "1" },new Point(1,1));
-	Knight blackKnight2 = new Knight(PieceColor.Black, new String[] { "g", "1" },new Point(6,1));
-	Knight whiteKnight1 = new Knight(PieceColor.White, new String[] { "b", "8" },new Point(1,8));
-	Knight whiteKnight2 = new Knight(PieceColor.White, new String[] { "g", "8" },new Point(6,8));
-	// ROOKS
-	Rook blackRook1 = new Rook(PieceColor.Black, new String[] { "a", "1" },new Point(0,1));
-	Rook blackRook2 = new Rook(PieceColor.Black, new String[] { "h", "1" },new Point(7,1));
-	Rook whiteRook1 = new Rook(PieceColor.White, new String[] { "a", "8" },new Point(0,8));
-	Rook whiteRook2 = new Rook(PieceColor.White, new String[] { "h", "8" },new Point(7,8));
-	// PAWNS
-
-	Pawn blackPawn1 = new Pawn(PieceColor.Black, new String[] { "a", "7" },new Point(0,7));
-	Pawn blackPawn2 = new Pawn(PieceColor.Black, new String[] { "b", "7" },new Point(1,7));
-	Pawn blackPawn3 = new Pawn(PieceColor.Black, new String[] { "c", "7" },new Point(2,7));
-	Pawn blackPawn4 = new Pawn(PieceColor.Black, new String[] { "d", "7" },new Point(3,7));
-	Pawn blackPawn5 = new Pawn(PieceColor.Black, new String[] { "e", "7" },new Point(4,7));
-	Pawn blackPawn6 = new Pawn(PieceColor.Black, new String[] { "f", "7" },new Point(5,7));
-	Pawn blackPawn7 = new Pawn(PieceColor.Black, new String[] { "g", "7" },new Point(6,7));
-	Pawn blackPawn8 = new Pawn(PieceColor.Black, new String[] { "h", "7" },new Point(7,7));
-	Pawn whitePawn1 = new Pawn(PieceColor.White, new String[] { "a", "2" },new Point(0,2));
-	Pawn whitePawn2 = new Pawn(PieceColor.White, new String[] { "b", "2" },new Point(1,2));
-	Pawn whitePawn3 = new Pawn(PieceColor.White, new String[] { "c", "2" },new Point(2,2));
-	Pawn whitePawn4 = new Pawn(PieceColor.White, new String[] { "d", "2" },new Point(3,2));
-	Pawn whitePawn5 = new Pawn(PieceColor.White, new String[] { "e", "2" },new Point(4,2));
-	Pawn whitePawn6 = new Pawn(PieceColor.White, new String[] { "f", "2" },new Point(5,2));
-	Pawn whitePawn7 = new Pawn(PieceColor.White, new String[] { "g", "2" },new Point(6,2));
-	Pawn whitePawn8 = new Pawn(PieceColor.White, new String[] { "h", "2" },new Point(1,2));
-
+	public void initialize() {
+		for (int column = 0; column < 8; column++) {
+			gameBoard[1][column].occupy(new Pawn(1, column, PieceColor.Black));
+			gameBoard[6][column].occupy(new Pawn(6, column, PieceColor.White));
+			if (column == 0 || column == 7) {
+				gameBoard[0][column].occupy(new Rook(0, column, PieceColor.Black));
+				gameBoard[7][column].occupy(new Rook(7, column, PieceColor.White));
+			}
+			else if (column == 1 || column == 6) {
+				gameBoard[0][column].occupy(new Knight(0, column, PieceColor.Black));
+				gameBoard[7][column].occupy(new Knight(7, column, PieceColor.White));
+			}
+			else if (column == 2 || column == 5) {
+				gameBoard[0][column].occupy(new Bishop(0, column, PieceColor.Black));
+				gameBoard[7][column].occupy(new Bishop(7, column, PieceColor.White));
+			}
+			else if (column == 3) {
+				gameBoard[0][column].occupy(new Queen(0, column, PieceColor.Black));
+				gameBoard[7][column].occupy(new Queen(7, column, PieceColor.White));
+			}
+			else {
+				gameBoard[0][column].occupy(new King(0, column, PieceColor.Black));
+				gameBoard[7][column].occupy(new King(7, column, PieceColor.White));
+			}
+		}
 	}
+	
 	public List<Pieces> piecesList = new ArrayList<Pieces>();
 	public String[][] board = new String[8][8];
 

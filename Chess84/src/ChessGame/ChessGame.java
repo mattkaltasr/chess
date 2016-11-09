@@ -1,6 +1,8 @@
 package ChessGame;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import game.Board;
 import game.TestBoard;
@@ -8,8 +10,19 @@ import gamePieces.IllegalMoveException;
 import gamePieces.PieceColor;
 
 public class ChessGame {
+	
+	static   Boolean resign= false;
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static void main(String[] args)throws IllegalMoveException {
-	 Boolean resign= false;
+   
 	 Boolean player=true;//set for white if true 
 	 Scanner input =new Scanner(System.in);
 	 PieceColor gameColor;
@@ -100,6 +113,8 @@ public class ChessGame {
 	
 	
 	}//end of main 
+	
+	
 	
 
 }

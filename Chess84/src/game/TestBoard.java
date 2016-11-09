@@ -114,18 +114,7 @@ public class TestBoard {
 	
 	
 	
-	public void drawBoard() {
-		System.out.println(a1.toString() + b1.toString() + c1.toString() + d1.toString() + e1.toString() + f1.toString() + g1.toString() + h1.toString() + "  1");
-		System.out.println(a2.toString() + b2.toString() + c2.toString() + d2.toString() + e2.toString() + f2.toString() + g2.toString() + h2.toString() + "  2");
-		System.out.println(a3.toString() + b3.toString() + c3.toString() + d3.toString() + e3.toString() + f3.toString() + g3.toString() + h3.toString() + "  3");
-		System.out.println(a4.toString() + b4.toString() + c4.toString() + d4.toString() + e4.toString() + f4.toString() + g4.toString() + h4.toString() + "  4");
-		System.out.println(a5.toString() + b5.toString() + c5.toString() + d5.toString() + e5.toString() + f5.toString() + g5.toString() + h5.toString() + "  5");
-		System.out.println(a6.toString() + b6.toString() + c6.toString() + d6.toString() + e6.toString() + f6.toString() + g6.toString() + h6.toString() + "  6");
-		System.out.println(a7.toString() + b7.toString() + c7.toString() + d7.toString() + e7.toString() + f7.toString() + g7.toString() + h7.toString() + "  7");
-		System.out.println(a8.toString() + b8.toString() + c8.toString() + d8.toString() + e8.toString() + f8.toString() + g8.toString() + h8.toString() + "  8");		
-		//System.out.println("_______________________________");
-		System.out.println("  a   b   c   d   e   f   g   h");
-	}
+	
 
 	public int positionLettertoInt(String letter) {
 		switch (letter) {
