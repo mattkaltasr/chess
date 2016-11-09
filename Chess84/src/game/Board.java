@@ -1,11 +1,27 @@
 package game;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import pieces.*;
 
 
+import gamePieces.*;
+
+
+/**
+ * @author matt kalita and Yigit Gungor
+ *
+ */
 public class Board {
+	
+	
+	
+	
+	private int[][] private_white;
+	private int[][] private_black;
+	
+	
+	
 	/*
 	 * TODO:
 	 * 
@@ -15,13 +31,57 @@ public class Board {
 	 * 
 	 * 
 	 */
-
+	private Square[][] gameBoard;
+	private HashMap<PieceType, Integer> whitePlayersPieces;
+	private HashMap<PieceType, Integer> blackPlayersPieces;
+	public static final char[] rowschar = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
 	/*
 	 * BOARD INDEXES:
 	 * 
 	 * 8| 7| 6| 5| 4| 3| 2| 1|__ __ __ __ __ __ __ __ a b c d e f g h
 	 */
-
+	
+	
+	//constructor of board 
+	public Board() {
+		
+		private_white = new int[8][8];
+		
+		gameBoard = new Square[8][8];
+		whitePlayersPieces = new HashMap<PieceType, Integer>();
+		
+		private_black = new int[8][8];
+		
+		blackPlayersPieces = new HashMap<PieceType, Integer>();
+		//initializes new board sets color integer for making game board 
+		for (int row = 0; row < 8; row++) {
+			for (int col = 0; col < 8; col++) {
+				int color;
+				if (row % 2 == 0) {
+					if (col % 2 == 0) {
+						color = 1;
+					}
+					else {
+						color = 0;
+					}
+				}
+				else {
+					if (col % 2 == 0) {
+						color = 0;
+					}
+					else {
+						color = 1;
+					}
+				}
+				gameBoard[row][col] = new Square(rowschar[col], row, col, color);
+			}
+		}
+	}
+	
+	
+	//initializing pieces
+	
+	public void initialize(){
 	// KINGS
 	King blackKing = new King(PieceColor.Black, new String[] { "e", "1" }, new Point(4,1));
 	King whiteKing = new King(PieceColor.White, new String[] { "e", "8" }, new Point(4,8));
@@ -64,21 +124,28 @@ public class Board {
 	Pawn whitePawn7 = new Pawn(PieceColor.White, new String[] { "g", "2" },new Point(6,2));
 	Pawn whitePawn8 = new Pawn(PieceColor.White, new String[] { "h", "2" },new Point(1,2));
 
-
+	}
 	public List<Pieces> piecesList = new ArrayList<Pieces>();
 	public String[][] board = new String[8][8];
 
-	public Board(){
-		addPieces();
-		drawBoard();
-	}
-
-	public void changePosition(int x, int y, int new_x, int new_y) throws IllegalMoveException{
-		
-		if(board[y][x] == space){
-			throw new IllegalMoveException();	}	}
+	
 
 	
+
+	public Square getSquare(int row, int column) {
+		return gameBoard[row][column];
+	}
+	
+	public HashMap<PieceType, Integer> getBlackCounts() {
+		return blackPlayersPieces;
+	}
+	
+	public HashMap<PieceType, Integer> getWhiteCounts() {
+		return whitePlayersPieces;
+	}
+	public int[][] getCoveredWhite() {
+		return private_white;
+	}
 
 	//Array takes [ROW][COL] but chess positions are [COL][ROW]
 	//So board[y][x] y=a x=2 is actually A2 on the board
@@ -142,7 +209,7 @@ public class Board {
 		reDrawBoard();}		
 	}
 	
-	private void addPieces() {
+	private void initializePieceCount	() {
 		piecesList.add(blackKing);
 		piecesList.add(whiteKing);
 
@@ -190,51 +257,30 @@ public class Board {
 	
 	
 
-	public void drawBoard() {
-		Boolean wSquare=true;
-		for (int i = 0; i < 8; i++) {
-			for (int j = 0; j < 8; j++) {
-				if(wSquare){
-				board[i][j] = wspace;
-				wSquare=false;
+	//prints out the virtual type board that is represented in this game 
+		public void printBoard() {
+			for (int row = 0; row < 8; row++) {
+				for (int col = 0; col < 8; col++) {
+					System.out.print(gameBoard[row][col].display() + " ");
 				}
-				else{
-					board[i][j] = bspace;
-					wSquare=true;
-				}
+				System.out.println(8 - row);
 			}
-			wSquare=!wSquare;
-		}
-		for (Pieces piece : piecesList) {
-			String[] position = piece.getPosition();
-			int x = positionLettertoInt(position[0]);
-			int y = Integer.parseInt(position[1]) - 1;
-			board[y][x] = piece.getCharRepresentation();
-		}
-
-		for (int i = 0; i < 8; i++) {
-			System.out.println("");
-			for (int j = 0; j < 8; j++) {
-				System.out.print(board[i][j]);
+			for (int print = 0; print < 8; print++) {
+				System.out.print(" " + rowschar[print] + " ");
 			}
-
-			System.out.print(""+(8-i));
-
-			System.out.println(" " + (i+1));
-
+			System.out.println();
 		}
-System.out.print("\n  a   b   c   d   e   f   g   h");
-		System.out.println("");
-
-		System.out.println("");
 		
-		System.out.println("Enter your move: {letter-from number-from letter-to letter-to}");
-
-		System.out.println("  a   b   c   d   e   f   g   h");
-
-
-	}
-	
+		// prints out the text version of board
+		public void printNotation() {
+			for (int row = 0; row < 8; row++) {
+				for (int col = 0; col < 8; col++) {
+					System.out.print(gameBoard[row][col].getNotation() + " ");
+				}
+				System.out.println();
+			}
+			System.out.println();
+		}
 	public void reDrawBoard(){
 		for (int i = 0; i < 8; i++) {
 			System.out.println("");
@@ -310,6 +356,41 @@ System.out.print("\n  a   b   c   d   e   f   g   h");
 		return "x";
 
 	}
-
+	//prints out the protected squares when called 
+	
+		public void printProtectedSquares() {
+			System.out.println("Black Squares:");
+			for (int row = 0; row < 8; row++) {
+				for (int col = 0; col < 8; col++) {
+					System.out.print(private_black[row][col] + " ");
+				}
+				System.out.println();
+			}
+			System.out.println();
+			System.out.println("White squares :");
+			for (int row = 0; row < 8; row++) {
+				for (int col = 0; col < 8; col++) {
+					System.out.print(private_white[row][col] + " ");
+				}
+				System.out.println();
+			}
+			System.out.println();
+		}
+		
+		//prints out sybols square to string method called 
+		public void printCoordinates() {
+			for (int c = 0; c < 8; c++) {
+				for (int r = 0; r < 8; r++) {
+					System.out.print(gameBoard[c][r].toString() + " ");
+				}
+				System.out.println();
+			}
+			System.out.println();
+		}
+		
+		public int[][] getCoveredBlack() {
+			return private_black;
+		}
+		
 	
 }

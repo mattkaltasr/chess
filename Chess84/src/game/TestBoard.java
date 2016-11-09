@@ -3,144 +3,24 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-import game.Location.*;
-import pieces.*;
+import ChessGame.BlockedMoveException;
+import GameBoards.Board;
+import GameBoards.Square;
+import gamePieces.*;
 
 
 public class TestBoard {
-	/*
-	 * TODO:
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
-
-	/*
-	 * BOARD INDEXES:
-	 * 
-	 * 8| 7| 6| 5| 4| 3| 2| 1|__ __ __ __ __ __ __ __ a b c d e f g h
-	 */
-	static Point whiteKingplace=new Point(4,8);
-	static Point blackKingPlace=new Point(4,1);
-	// Locations
-	Location a1 = new Location(locationName.a1,PieceColor.Black);
-	Location a2 = new Location(locationName.a2,PieceColor.White);
-	Location a3 = new Location(locationName.a3,PieceColor.Black);
-	Location a4 = new Location(locationName.a4,PieceColor.White);
-	Location a5 = new Location(locationName.a5,PieceColor.Black);
-	Location a6 = new Location(locationName.a6,PieceColor.White);
-	Location a7 = new Location(locationName.a7,PieceColor.Black);
-	Location a8 = new Location(locationName.a8,PieceColor.White);	
-	Location b1 = new Location(locationName.b1,PieceColor.White);
-	Location b2 = new Location(locationName.b2,PieceColor.Black);
-	Location b3 = new Location(locationName.b3,PieceColor.White);
-	Location b4 = new Location(locationName.b4,PieceColor.Black);
-	Location b5 = new Location(locationName.b5,PieceColor.White);
-	Location b6 = new Location(locationName.b6,PieceColor.Black);
-	Location b7 = new Location(locationName.b7,PieceColor.White);
-	Location b8 = new Location(locationName.b8,PieceColor.Black);	
-	Location c1 = new Location(locationName.c1,PieceColor.Black);
-	Location c2 = new Location(locationName.c2,PieceColor.White);
-	Location c3 = new Location(locationName.c3,PieceColor.Black);
-	Location c4 = new Location(locationName.c4,PieceColor.White);
-	Location c5 = new Location(locationName.c5,PieceColor.Black);
-	Location c6 = new Location(locationName.c6,PieceColor.White);
-	Location c7 = new Location(locationName.c7,PieceColor.Black);
-	Location c8 = new Location(locationName.c8,PieceColor.White);
-	Location d1 = new Location(locationName.d1,PieceColor.White);
-	Location d2 = new Location(locationName.d2,PieceColor.Black);
-	Location d3 = new Location(locationName.d3,PieceColor.White);
-	Location d4 = new Location(locationName.d4,PieceColor.Black);
-	Location d5 = new Location(locationName.d5,PieceColor.White);
-	Location d6 = new Location(locationName.d6,PieceColor.Black);
-	Location d7 = new Location(locationName.d7,PieceColor.White);
-	Location d8 = new Location(locationName.d8,PieceColor.Black);
-	Location e1 = new Location(locationName.e1,PieceColor.Black);
-	Location e2 = new Location(locationName.e2,PieceColor.White);
-	Location e3 = new Location(locationName.e3,PieceColor.Black);
-	Location e4 = new Location(locationName.e4,PieceColor.White);
-	Location e5 = new Location(locationName.e5,PieceColor.Black);
-	Location e6 = new Location(locationName.e6,PieceColor.White);
-	Location e7 = new Location(locationName.e7,PieceColor.Black);
-	Location e8 = new Location(locationName.e8,PieceColor.White);	
-	Location f1 = new Location(locationName.f1,PieceColor.White);
-	Location f2 = new Location(locationName.f2,PieceColor.Black);
-	Location f3 = new Location(locationName.f3,PieceColor.White);
-	Location f4 = new Location(locationName.f4,PieceColor.Black);
-	Location f5 = new Location(locationName.f5,PieceColor.White);
-	Location f6 = new Location(locationName.f6,PieceColor.Black);
-	Location f7 = new Location(locationName.f7,PieceColor.White);
-	Location f8 = new Location(locationName.f8,PieceColor.Black);	
-	Location g1 = new Location(locationName.f1,PieceColor.Black);
-	Location g2 = new Location(locationName.f2,PieceColor.White);
-	Location g3 = new Location(locationName.f3,PieceColor.White);
-	Location g4 = new Location(locationName.f4,PieceColor.Black);
-	Location g5 = new Location(locationName.f5,PieceColor.White);
-	Location g6 = new Location(locationName.f6,PieceColor.Black);
-	Location g7 = new Location(locationName.f7,PieceColor.White);
-	Location g8 = new Location(locationName.f8,PieceColor.Black);	
-	Location h1 = new Location(locationName.h1,PieceColor.Black);
-	Location h2 = new Location(locationName.h2,PieceColor.White);
-	Location h3 = new Location(locationName.h3,PieceColor.Black);
-	Location h4 = new Location(locationName.h4,PieceColor.White);
-	Location h5 = new Location(locationName.h5,PieceColor.Black);
-	Location h6 = new Location(locationName.h6,PieceColor.White);
-	Location h7 = new Location(locationName.h7,PieceColor.Black);
-	Location h8 = new Location(locationName.h8,PieceColor.White);
 	
-	
-
-	// KINGS
-	 King blackKing = new King(PieceColor.Black, e1,new Point(4,1));
-	
-	King whiteKing = new King(PieceColor.White, e8,new Point(4,8));
-	
-	// QUEENS
-	Queen blackQueen = new Queen(PieceColor.Black, d1,new Point(3,1));
-	Queen whiteQueen = new Queen(PieceColor.White, d8,new Point(3,8));
-	// BISHOPS
-	Bishop blackBishop1 = new Bishop(PieceColor.Black, c1,new Point(2,1));
-	Bishop blackBishop2 = new Bishop(PieceColor.Black, f1,new Point(5,1));
-	Bishop whiteBishop1 = new Bishop(PieceColor.White, c8,new Point(2,8));
-	Bishop whiteBishop2 = new Bishop(PieceColor.White, f8,new Point(5,8));
-	// KNIGHTS
-	Knight blackKnight1 = new Knight(PieceColor.Black, b1,new Point(1,1));
-	Knight blackKnight2 = new Knight(PieceColor.Black, g1,new Point(6,1));
-	Knight whiteKnight1 = new Knight(PieceColor.White, b8,new Point(1,8));
-	Knight whiteKnight2 = new Knight(PieceColor.White, g8,new Point(6,8));
-	// ROOKS
-	Rook blackRook1 = new Rook(PieceColor.Black, a1,new Point(0,1));
-	Rook blackRook2 = new Rook(PieceColor.Black, h1,new Point(7,1));
-	Rook whiteRook1 = new Rook(PieceColor.White, a8,new Point(0,8));
-	Rook whiteRook2 = new Rook(PieceColor.White, h8,new Point(7,8));
-	// PAWNS
-	Pawn blackPawn1 = new Pawn(PieceColor.Black, a2,new Point(0,2));
-	Pawn blackPawn2 = new Pawn(PieceColor.Black, b2,new Point(1,2));
-	Pawn blackPawn3 = new Pawn(PieceColor.Black, c2,new Point(2,2));
-	Pawn blackPawn4 = new Pawn(PieceColor.Black, d2,new Point(3,2));
-	Pawn blackPawn5 = new Pawn(PieceColor.Black, e2,new Point(4,2));
-	Pawn blackPawn6 = new Pawn(PieceColor.Black, f2,new Point(5,2));
-	Pawn blackPawn7 = new Pawn(PieceColor.Black, g2,new Point(6,2));
-	Pawn blackPawn8 = new Pawn(PieceColor.Black, h2,new Point(7,2));
-	Pawn whitePawn1 = new Pawn(PieceColor.White, a7,new Point(0,7));
-	Pawn whitePawn2 = new Pawn(PieceColor.White, b7,new Point(1,7));
-	Pawn whitePawn3 = new Pawn(PieceColor.White, c7,new Point(2,7));
-	Pawn whitePawn4 = new Pawn(PieceColor.White, d7,new Point(3,7));
-	Pawn whitePawn5 = new Pawn(PieceColor.White, e7,new Point(4,7));
-	Pawn whitePawn6 = new Pawn(PieceColor.White, f7,new Point(5,7));
-	Pawn whitePawn7 = new Pawn(PieceColor.White, g7,new Point(6,7));
-	Pawn whitePawn8 = new Pawn(PieceColor.White, h7,new Point(7,7));
-
-	public List<Pieces> piecesList = new ArrayList<Pieces>();
-	public List<Location> board = new ArrayList<Location>();
+	static int lastPawnMoveOrCapture = 0;
+	static ArrayList<String> white_moves = new ArrayList<String>();// keep track of players piece
+	static ArrayList<String> black_moves = new ArrayList<String>();// keep track of players pieces 
 	
 	//player list to keep track of current pieces player has left and for stale-mate,check 
 	public List<Pieces>  blackPlayer=new ArrayList<Pieces>();
 	public List<Pieces>  whitePlayer=new ArrayList<Pieces>();
-
+	static boolean check = false; //if check it will be tru 
+	static boolean end = false; // if end of game it will be true 
+	
 	public TestBoard(){
 		addPieces();
 		addLocations();
@@ -214,171 +94,24 @@ public class TestBoard {
 		
 		drawBoard();		
 	}
+	/**
+	 * getter method to return last pawn moved or captured 
+	 * @return
+	 */
+	public static int getLastPawnMoveOrCapture() {
+		return lastPawnMoveOrCapture;
+	}
 	
-	private void addPieces() {
-		//add to board and players list 
-		piecesList.add(blackKing);
-		//add to players list 
-		blackPlayer.add(blackKing);
-		
-		piecesList.add(whiteKing);
-		//add to white list 
-		 whitePlayer.add(whiteKing);
-
-		piecesList.add(blackQueen);
-		//add to players list 
-		blackPlayer.add(blackQueen);
-		
-		piecesList.add(whiteQueen);
-		whitePlayer.add(whiteQueen);
-
-		piecesList.add(blackBishop1);
-		piecesList.add(blackBishop2);
-		//add to players list 
-		blackPlayer.add(blackBishop1);
-		blackPlayer.add(blackBishop2);
-		
-		piecesList.add(whiteBishop1);
-		piecesList.add(whiteBishop2);
-		//add to white list 
-		whitePlayer.add(whiteBishop1);
-		whitePlayer.add(whiteBishop2);
-
-		piecesList.add(blackKnight1);
-		piecesList.add(blackKnight2);
-		//add to players list 
-		blackPlayer.add(blackKnight1);
-		blackPlayer.add(blackKnight2);
-		
-		
-		
-		piecesList.add(whiteKnight1);
-		piecesList.add(whiteKnight2);
-		whitePlayer.add(whiteKnight1);
-		whitePlayer.add(whiteKnight2);
-
-		piecesList.add(blackRook1);
-		piecesList.add(blackRook2);
-		//add to players list 
-		blackPlayer.add(blackRook1);
-		blackPlayer.add(blackRook2);
-		
-		
-		
-		piecesList.add(whiteRook1);
-		piecesList.add(whiteRook2);
-		// add white players pieces
-		whitePlayer.add(whiteRook1);
-		whitePlayer.add(whiteRook2);
-
-		piecesList.add(blackPawn1);
-		piecesList.add(blackPawn2);
-		piecesList.add(blackPawn3);
-		piecesList.add(blackPawn4);
-		piecesList.add(blackPawn5);
-		piecesList.add(blackPawn6);
-		piecesList.add(blackPawn7);
-		
-		//add to players list 
-		piecesList.add(blackPawn8);
-		blackPlayer.add(blackPawn1);
-		blackPlayer.add(blackPawn2);
-		blackPlayer.add(blackPawn3);
-		blackPlayer.add(blackPawn4);
-		blackPlayer.add(blackPawn5);
-		blackPlayer.add(blackPawn6);
-		blackPlayer.add(blackPawn7);
-		blackPlayer.add(blackPawn8);
-		
-		
-		
-		piecesList.add(whitePawn1);
-		piecesList.add(whitePawn2);
-		piecesList.add(whitePawn3);
-		piecesList.add(whitePawn4);
-		piecesList.add(whitePawn5);
-		piecesList.add(whitePawn6);
-		piecesList.add(whitePawn7);
-		piecesList.add(whitePawn8);
-		
-		// add white pawns to white players list 
-		whitePlayer.add(whitePawn1);
-		whitePlayer.add(whitePawn2);
-		whitePlayer.add(whitePawn3);
-		whitePlayer.add(whitePawn4);
-		whitePlayer.add(whitePawn5);
-		whitePlayer.add(whitePawn6);
-		whitePlayer.add(whitePawn7);
-		whitePlayer.add(whitePawn8);
-		
+	/**
+	 * Mutator void method that sets the boolean to true if ended 
+	 */
+	public static void setEnd() {
+		end = true;
 	}
-	private void addLocations(){
-		board.add(a1);
-		board.add(a2);
-		board.add(a3);
-		board.add(a4);
-		board.add(a5);
-		board.add(a6);
-		board.add(a7);
-		board.add(a8);		
-		board.add(b1);
-		board.add(b2);
-		board.add(b3);
-		board.add(b4);
-		board.add(b5);
-		board.add(b6);
-		board.add(b7);
-		board.add(b8);		
-		board.add(c1);
-		board.add(c2);
-		board.add(c3);
-		board.add(c4);
-		board.add(c5);
-		board.add(c6);
-		board.add(c7);
-		board.add(c8);		
-		board.add(d1);
-		board.add(d2);
-		board.add(d3);
-		board.add(d4);
-		board.add(d5);
-		board.add(d6);
-		board.add(d7);
-		board.add(d8);		
-		board.add(e1);
-		board.add(e2);
-		board.add(e3);
-		board.add(e4);
-		board.add(e5);
-		board.add(e6);
-		board.add(e7);
-		board.add(e8);		
-		board.add(f1);
-		board.add(f2);
-		board.add(f3);
-		board.add(f4);
-		board.add(f5);
-		board.add(f6);
-		board.add(f7);
-		board.add(f8);		
-		board.add(g1);
-		board.add(g2);
-		board.add(g3);
-		board.add(g4);
-		board.add(g5);
-		board.add(g6);
-		board.add(g7);
-		board.add(g8);		
-		board.add(h1);
-		board.add(h2);
-		board.add(h3);
-		board.add(h4);
-		board.add(h5);
-		board.add(h6);
-		board.add(h7);
-		board.add(h8);
-		
-	}
+	
+	
+	
+	
 	
 	
 	public void drawBoard() {
@@ -442,56 +175,251 @@ public class TestBoard {
 	}
 
 	
-	static boolean pathClear(int fromX,int fromY,int toX,int toY,Pieces current,Location to){
-		switch(current.getCharRepresentation()){
+	/**
+	 * Switch that checks the path of each type of piece to see if it is blocked or not 
+	 * a separate case for each piece along with checking the path for the type of moves that piece does 
+	 * 
+	 * @param board receives current board in play to check path 
+	 * @param fromRow initial row in rep 
+	 * @param fromcolumn initial row int rep 
+	 * @param toRow destination row int  rep 
+	 * @param toColumn destination column int rep 
+	 * @throws BlockedMoveException throws this if can't move due to blocked path ie piece of your own or other players in way 
+	 */
+	private static void isPathBlocked(Board board, int fromRow, int fromcolumn, int toRow, int toColumn) throws BlockedMoveException {
 		
-		//checks pawn path 
-		
-		case " wP ":
-			if(current.isMoveLegal(toX, toY)){
-				return true;}
+		Square start = board.getSquare(fromRow, fromcolumn);
+		Square dest = board.getSquare(toRow, toColumn);
+		Pieces player = start.getPiece();
+		//check path
+		PieceColor current = board.getSquare(fromRow, fromcolumn).getPiece().getColor();
+		Square pathSquare;
+		switch(player.getPieceType()) {
 			
-			else
-			 if(Math.abs(fromX-toY)==Math.abs(fromY-toX)){
-				 return true;
-			 }
-			 else return false;
-		
-		
-		case " bP ":
-			if(current.isMoveLegal(toX, toY)){
-				return true;}
-			
-			else//check diagonal move 
+		case QUEEN:// need to check all moves of queen in all direction 
+			int queen;
+			int row, column;
+			//if columns  are the same just same as rook case above 
+			if (fromcolumn == toColumn) {
+				if (fromRow < toRow) {
+					for (queen = fromRow + 1; queen < toRow; queen++) {
+						pathSquare = board.getSquare(queen, fromcolumn);
+						if (!pathSquare.isEmpty()) {
+							throw new BlockedMoveException();
+						}
+					}
+				}
+				else {
+					for (queen = fromRow - 1; queen > toRow; queen--) {
+						pathSquare = board.getSquare(queen, fromcolumn);
+						if (!pathSquare.isEmpty()) {
+							throw new BlockedMoveException();	}	}
+				}
+			}
+			//otherwise rows are the same used similar code to rooks move above 
+			else if (fromRow == toRow){
+				if (fromcolumn < toColumn) {
+					for (queen = fromcolumn + 1; queen < toColumn; queen++) {
+						pathSquare = board.getSquare(fromRow, queen);
+						if (!pathSquare.isEmpty()) {
+							throw new BlockedMoveException();
+						}
+					}
+				}
+				else {
+					for (queen = fromcolumn - 1; queen > toColumn; queen--) {
+						pathSquare = board.getSquare(fromRow, queen);
+						if (!pathSquare.isEmpty()) {
+							throw new BlockedMoveException();	}		}
+				}
+			}
+			//going up the board 
+			if (fromRow > toRow) {
+				//going left
+				row = fromRow - 1;
+				if (fromcolumn > toColumn) {
+					column = fromcolumn - 1;
+					while (row > toRow && column > toColumn) {
+						pathSquare = board.getSquare(row, column);
+						if (!pathSquare.isEmpty()) {
+							throw new BlockedMoveException();
+						}
+						row--;
+						column--;
+					}
+				}
+				//going right on the board 
+				else {
+					column = fromcolumn + 1;
+					while (row > toRow && column < toColumn) {
+						pathSquare = board.getSquare(row, column);
+						if (!pathSquare.isEmpty()) {
+							throw new BlockedMoveException();
+						}
+						row--;
+						column++;
+					}
+				}
+			}
+			//going down the board 
+			else {
+				row = fromRow + 1;
+				//going left from that point 
+				if (fromcolumn > toColumn) {
+					column = fromcolumn - 1;
+					while (row < toRow && column > toColumn) {
+						pathSquare = board.getSquare(row, column);
+						if (!pathSquare.isEmpty()) {
+							throw new BlockedMoveException();
+						}
+						row++;
+						column--;
+					}
+				}
+				//going right from that point 
+				else {
+					column = fromcolumn + 1;
+					while (row < toRow && column < toColumn) {
+						pathSquare = board.getSquare(row, column);
+						if (!pathSquare.isEmpty()) {
+							throw new BlockedMoveException();
+						}
+						row++;
+						column++;
+					}
+				}
+			}
+			break;
+			case BISHOP:
+				//going in the upper direction of the board
 				
-			 if(Math.abs(fromX-toY)==Math.abs(fromY-toX)&&current.getColor()!=(to.piece.getColor())){
-				 
-				 return true;
-			 }
-			 else return false;
+				if (fromRow > toRow) {
+					//going leftward on board 
+					row = fromRow - 1;
+					if (fromcolumn > toColumn) {
+						column = fromcolumn - 1;
+						while (row > toRow && column > toColumn) {
+							pathSquare = board.getSquare(row, column);
+							if (!pathSquare.isEmpty()) {
+								throw new BlockedMoveException();
+							}
+							row--;
+							column--;
+						}
+					}
+					//going rightward on board 
+					else {
+						column = fromcolumn + 1;
+						while (row > toRow && column < toColumn) {
+							pathSquare = board.getSquare(row, column);
+							if (!pathSquare.isEmpty()) {
+								throw new BlockedMoveException();
+							}
+							row--;
+							column++;
+						}
+					}
+				}
+				//going down if needed on board 
+				else {
+					row = fromRow + 1;
+					//going left
+					if (fromcolumn > toColumn) {
+						column = fromcolumn - 1;
+						while (row < toRow && column > toColumn) {
+							pathSquare = board.getSquare(row, column);
+							if (!pathSquare.isEmpty()) {
+								throw new BlockedMoveException();
+							}
+							row++;
+							column--;
+						}
+					}
+					//going right on board 
+					else {
+						column = fromcolumn + 1;
+						while (row < toRow && column < toColumn) {
+							pathSquare = board.getSquare(row, column);
+							if (!pathSquare.isEmpty()) {
+								throw new BlockedMoveException();
+							}
+							row++;
+							column++;					}
+					}
+				}
+				break;
+				
+			case ROOK:
+				int a;
+				//if columns are the same it checks 
+				if (fromcolumn == toColumn) {
+					if (fromRow < toRow) {
+						for (a = fromRow + 1; a < toRow; a++) {
+							pathSquare = board.getSquare(a, fromcolumn);
+							if (!pathSquare.isEmpty()) {
+								throw new BlockedMoveException();	}
+						}
+					}
+					else {
+						for (a = fromRow - 1; a > toRow; a--) {
+							pathSquare = board.getSquare(a, fromcolumn);
+							if (!pathSquare.isEmpty()) {
+								throw new BlockedMoveException();	}			}
+					}
+				}
+				//otherwise rows are the same and it moves on rows 
+				else if (fromRow == toRow){
+					if (fromcolumn < toColumn) {
+						for (a = fromcolumn + 1; a < toColumn; a++) {
+							pathSquare = board.getSquare(fromRow, a);
+							if (!pathSquare.isEmpty()) {
+								throw new BlockedMoveException();
+							}
+						}
+					}
+					else {
+						for (a = fromcolumn - 1; a > toColumn; a--) {
+							pathSquare = board.getSquare(fromRow, a);
+							if (!pathSquare.isEmpty()) {
+								throw new BlockedMoveException();	}		}
+					}
+				}
+				break;
 			
-		
-		
-		//knight can move as long as destination is either clear or color of piece is oppisite 
-		case " bN ":
-			if(current.getColor()!=to.piece.getColor()||to.piece==null){
-				return true;}
-			else return false;
-		
-		case " wN ":
-			if(current.getColor()!=to.piece.getColor()||to.piece==null){
-				return true;}
-			else return false;
-			
-			
-			
-			
-		
-		default:
-			return false;
-		
-		}	
+				
+			case PAWN: 
+				if (!player.hasMoved()) {
+					if (player.getColor() == PieceColor.Black) {
+						pathSquare = board.getSquare(fromRow + 1, fromcolumn);
+					}
+					else {
+						pathSquare = board.getSquare(fromRow - 1, fromcolumn);
+					}
+					if (!pathSquare.isEmpty()) {
+						throw new BlockedMoveException();
+					}
+				}
+				break;
+			default:// default never called being it uses a peiceType to be called 
+				break;
+		}
+		// pawn & color check for block path 
+		if(dest.getPiece() != null){
+			if(current == dest.getPiece().getColor()){
+				
+				if (start.getPiece().getPieceType() != PieceType.PAWN) {
+					if (current == PieceColor.White) {
+						board.getCoveredWhite()[toRow][toColumn] = 1;
+					}
+					else {
+						board.getCoveredBlack()[toRow][toColumn] = 1;
+					}
+				}
+				throw new BlockedMoveException();
+			}
+		}
 	}
+	
 	
 	
 	public void capture (Pieces caught){
@@ -521,7 +449,21 @@ public class TestBoard {
 	
 	
 	
+	/**
+	 * getter method returns boolean for end of game 
+	 * @return boolean 
+	 */
+	public static boolean isEnd() {
+		return end;
+	}
 	
+	/**
+	 * getter that returns the status of check mate 
+	 * @return boolean that rep check 
+	 */
+	public static boolean getCheckStatus() {
+		return check;
+	}
 	
 	
 	
