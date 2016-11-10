@@ -1,51 +1,162 @@
 package game;
-import pieces.*;
+import gamePieces.Pieces;
 
-public class Location {
-	Pieces piece;
-	locationName name;
-	private PieceColor locaColor;
+
+
+
+
+
+
+
+
+
+/**
+ * @author matt kalita and Yigit Gungor 
+ *
+ */
+public class Square {
 	
-	public Location(locationName location,PieceColor color)
-	{
-		this.name = location;
-		this.locaColor=color;
-		piece=null;
+	
+	
+	private char file;  //char rep of row 
+	private int row;
+	private int column;
+	private int color; 
+	private boolean squareEmpty;
+	private Pieces piece;
+
+	
+	
+	
+	
+	/**
+	 * Square Constructor receives parameters to instantiate the fields on the game squares 
+	 * @param rowFile   for the Char value of row "File" 
+	 * @param temprowr
+	 * @param tempcolumn
+	 * @param tempColor
+	 */
+	public Square(char rowFile, int temprowr, int tempcolumn, int tempColor) {
+		this.row = temprowr;
+		this.file = rowFile;
+		this.column = tempcolumn;
+		this.color = tempColor;
+		this.squareEmpty = true;
+		this.piece = null;
+	}
+	/**
+	 * methed that returns the boolean of the is empty to see if square is empty 
+	 * @return  boolean of the empty param 
+	 */
+	public boolean isEmpty() {
+		return squareEmpty;
 	}
 	
-	public void assignPiece(Pieces piece){
-		piece.location = this;
-		this.piece = piece;
+	/**
+	 * returns the int that represents the color on the square decided not to use enum to save on code 
+	 * 0 for black, 1 for white
+	 * @return int for color 
+	 */
+	public int getColor() {
+		return color;
 	}
-	public void setColor(PieceColor color){
-		this.locaColor=color;
+	
+	
+	/**
+	 * getter method to get row int 
+	 * @return in for row 
+	 */
+	public int getRow() {
+		return row;
 	}
-	public PieceColor getLocaColor(){
-		return locaColor;
-	}
-	public Pieces getPiece(){
+	
+	
+	/**
+	 * getter method to get piece 
+	 * @return pieces object 
+	 */
+	public Pieces getPiece() {
 		return piece;
 	}
 	
-	@Override
-	public String toString(){
-		if(piece == null&&getLocaColor()==PieceColor.White)
-			return " ## ";
-		else 
-			if(piece == null&&getLocaColor()==PieceColor.Black)
-				return "    ";
-		
-		return piece.getCharRepresentation();		
+	
+	
+	
+	/**
+	 * getter method to return the int for the column variable rep
+	 * @return int 
+	 */
+	public int column() {
+		return column;
 	}
-
-	public static enum locationName {
-	a1,a2,a3,a4,a5,a6,a7,a8,
-	b1,b2,b3,b4,b5,b6,b7,b8,
-	c1,c2,c3,c4,c5,c6,c7,c8,
-	d1,d2,d3,d4,d5,d6,d7,d8,
-	e1,e2,e3,e4,e5,e6,e7,e8,
-	f1,f2,f3,f4,f5,f6,f7,f8,
-	g1,g2,g3,g4,g5,g6,g7,g8,
-	h1,h2,h3,h4,h5,h6,h7,h8
+	
+	/**
+	 * void mutator method that sets the piece on the square to null 
+	 */
+	public void removePiece() {
+		piece = null;
+		squareEmpty = true;
 	}
+	
+	/**
+	 * getter method that returns the char rep of the "File"(row)
+	 * @return
+	 */
+	public char getCharRow() {
+		return file;
+	}
+	
+	/**
+	 * Mutator method assigns a piece object to the current squares field 
+	 * @param p
+	 */
+	public void occupy(Pieces p) {
+		piece = p;
+		squareEmpty = false;
+	}
+	
+	
+	/**
+	 * used to print out the char representation of each square on board ## for black and empty for white 
+	 * @return String depending on whether 1 or 0 
+	 */
+	public String display() {
+		if (squareEmpty) {
+			if (color == 0) {
+				return "##";	}
+			return "  ";
+		}
+		return getPiece().toString();
+	}
+	
+	
+	
+	
+	
+	/**
+	 * method to set row end notation 
+	 * @return
+	 */
+	public String getNotation() {
+		return file + "" + (8 - row);
+	}
+	/**
+	 * toString override of objects 
+	 * @return String of rep of square 
+	 */
+	public String toString() {
+		return "[" + row + "," + column + "]";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

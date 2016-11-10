@@ -26,17 +26,17 @@ public class ChessGame {
 	 Boolean player=true;//set for white if true 
 	 Scanner input =new Scanner(System.in);
 	 PieceColor gameColor;
-	int Gamecounter =0:
+	int Gamecounter =0;
 	
 		
 		
 		//sets up game board for game play 
 	Board newGame= new Board();
-	board.initialize();
-	board.initializePieceCounts();
-	board.printBoard();
+	newGame.initialize();
+	newGame.initializePieceCounts();
+	newGame.printBoard();
 	
-	while((getLastPawnmoveorcapture()<50)&&!board.draw()&&!TestBoard.isEnd()){
+	while((TestBoard.getLastPawnMoveOrCapture()<50)&&!newGame.draw()&&!TestBoard.isEnd()){
 		Gamecounter++;
 		
 		if(player){
@@ -66,7 +66,7 @@ public class ChessGame {
 			
 			if(gameMove.length()==7) {
 				TestBoard.promotePawn(gameMove,newGame,gameColor);}
-			else { movePiece(gameMove,newBoard,GameColor);
+			else { TestBoard.movePiece(gameMove,newGame,gameColor);
 				
 			}//end if 7 game move 
 			
@@ -102,7 +102,10 @@ public class ChessGame {
 		TestBoard.inCheck(newGame,gameColor);
 		if (TestBoard.getCheckStatus()){System.out.println(" Check ");}
 		
-		
+		if(player)
+			player=false;
+		else
+			player=true;
 		
 			
 		

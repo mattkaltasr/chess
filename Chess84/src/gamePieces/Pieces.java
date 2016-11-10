@@ -1,4 +1,5 @@
 package gamePieces;
+// to use to check two parameters 
 import java.util.function.BiFunction;
 
 /**
@@ -38,13 +39,14 @@ public abstract class Pieces {
 	
 	
 	/**
-	 *  superclass move method has bifunction Lambda to assist in making move 
+	 *  superclass move method has bifunction Lambda to return boolean  
 	 * @param row
 	 * @param column
 	 * @param canMove
 	 * @throws IllegalMoveException
 	 */
-	public void movePiece(int row, int column, BiFunction<Integer, Integer, Boolean> canMove) throws IllegalMoveException {
+	public void movePiece(int row, int column, BiFunction<Integer, Integer, Boolean> canMove) 
+			throws IllegalMoveException {
 		if(row < 0 || row > 7 || column < 0 || column > 7 || !canMove.apply(row, column)){
 			throw new IllegalMoveException();
 		}

@@ -1,4 +1,4 @@
-package pieces;
+package gamePieces;
 
 public enum PieceType{
 	
