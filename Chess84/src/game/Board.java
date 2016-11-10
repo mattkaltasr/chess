@@ -132,111 +132,35 @@ public class Board {
 
 	//Array takes [ROW][COL] but chess positions are [COL][ROW]
 	//So board[y][x] y=a x=2 is actually A2 on the board
-	public void changePosition(int x, int y, int new_x, int new_y, boolean white) throws IllegalMoveException{
-		
-		Pieces piece = null;
-		for(Pieces eachpiece: piecesList){
-			int piece_x = positionLettertoInt(eachpiece.getPosition_x());
-			int piece_y = (Integer.parseInt(eachpiece.getPosition_y()) - 1);
-			if(piece_x == x && piece_y == y){
-				piece = eachpiece;
-				break;				
-				}
-		}
-		
-		if(board[y][x] == space){
-			throw new IllegalMoveException();		}
-		
-		if(white && board[y][x].contains("b")){
-			throw new IllegalMoveException();		}
-
-		if(!white && board[y][x].contains("w")){
-			throw new IllegalMoveException();		}
-		
-
-		
-		
-		if(board[new_y][new_x] == space){
-			piece.setPosition(new String[] {positionInttoLetter(new_x),String.valueOf(new_y)});
-			board[new_y][new_x] = board[y][x];
-			board[y][x] = space;
-		}else{
-
-			if((board[y][x]).contains("BK") && (board[new_y][new_x]).contains("WT"))
-			{
-				board[new_y][new_x] = board[y][x];
-				board[y][x] = space;
-			}
-			else if((board[y][x]).contains("WT") && (board[new_y][new_x]).contains("BK"))
-			{
-				board[new_y][new_x] = board[y][x];
-
-			if((board[y][x]).contains("b") && (board[new_y][new_x]).contains("w"))
-			{
-				board[new_y][new_x] = board[y][x];
-				piece.setPosition(new String[] {positionInttoLetter(new_x),String.valueOf(new_y)});
-				board[y][x] = space;
-			}
-			else if((board[y][x]).contains("w") && (board[new_y][new_x]).contains("b"))
-			{
-				board[new_y][new_x] = board[y][x];
-				piece.setPosition(new String[] {positionInttoLetter(new_x),String.valueOf(new_y)});
-
-				board[y][x] = space;
-			}
-			else
-			{throw new IllegalMoveException();}
-			
-		}
-		
-		reDrawBoard();}		
-	}
 	
-	private void initializePieceCount	() {
-		piecesList.add(blackKing);
-		piecesList.add(whiteKing);
-
-		piecesList.add(blackQueen);
-		piecesList.add(whiteQueen);
-
-		piecesList.add(blackBishop1);
-		piecesList.add(blackBishop2);
-		piecesList.add(whiteBishop1);
-		piecesList.add(whiteBishop2);
-
-		piecesList.add(blackKnight1);
-		piecesList.add(blackKnight2);
-		piecesList.add(whiteKnight1);
-		piecesList.add(whiteKnight2);
-
-		piecesList.add(blackRook1);
-		piecesList.add(blackRook2);
-		piecesList.add(whiteRook1);
-		piecesList.add(whiteRook2);
-
-		piecesList.add(blackPawn1);
-		piecesList.add(blackPawn2);
-		piecesList.add(blackPawn3);
-		piecesList.add(blackPawn4);
-		piecesList.add(blackPawn5);
-		piecesList.add(blackPawn6);
-		piecesList.add(blackPawn7);
-		piecesList.add(blackPawn8);
-		piecesList.add(whitePawn1);
-		piecesList.add(whitePawn2);
-		piecesList.add(whitePawn3);
-		piecesList.add(whitePawn4);
-		piecesList.add(whitePawn5);
-		piecesList.add(whitePawn6);
-		piecesList.add(whitePawn7);
-		piecesList.add(whitePawn8);
-	}
-
+	
+	// initializes game pieces 
+		public void initializePieceCounts() {
+			whitePlayersPieces.put(PieceType.PAWN, 8);
+			whitePlayersPieces.put(PieceType.QUEEN, 1);
+			whitePlayersPieces.put(PieceType.ROOK, 2);
+			whitePlayersPieces.put(PieceType.KNIGHT, 2);
+			whitePlayersPieces.put(PieceType.BISHOP, 2);
+			blackPlayersPieces.put(PieceType.PAWN, 8);
+			blackPlayersPieces.put(PieceType.QUEEN, 1);
+			blackPlayersPieces.put(PieceType.ROOK, 2);
+			blackPlayersPieces.put(PieceType.KNIGHT, 2);
+			blackPlayersPieces.put(PieceType.BISHOP, 2);
+		}
+		
 	public String space = "";
 	public String bspace = " ## ";
 	public String wspace = "    ";
 
-
+	// resets the array thats protected 
+		public void resetCoveredSquares() {
+			for (int i = 0; i < 8; i++) {
+				for (int j = 0; j < 8; j++) {
+					private_white[i][j] = 0;
+					private_black[i][j] = 0;
+				}
+			}
+		}
 	
 	
 
@@ -285,29 +209,7 @@ public class Board {
 
 	}
 		
-	public int positionLettertoInt(String letter) {
-		switch (letter) {
-		case "a":
-			return 0;
-		case "b":
-			return 1;
-		case "c":
-			return 2;
-		case "d":
-			return 3;
-		case "e":
-			return 4;
-		case "f":
-			return 5;
-		case "g":
-			return 6;
-		case "h":
-			return 7;
-
-		}
-		return -1;
-
-	}
+	
 
 	public Boolean pathNotBlocked(int oldx ,int oldy,int destx,int desty){
 		//if(Math.abs((oldx-destx)==1&&Math.abs(oldy-desty)==0)||(oldx-destx)==0&&Math.abs(oldy-desty)==1))
@@ -338,6 +240,22 @@ public class Board {
 		}
 		return "x";
 
+	}
+	
+	public boolean draw() {
+		//check-mate is possible if there are queens and/or rooks and/or pawns on the board
+		if (whitePlayersPieces.get(PieceType.QUEEN) > 0 || blackPlayersPieces.get(PieceType.QUEEN) > 0 || 
+				whitePlayersPieces.get(PieceType.ROOK) > 0 || blackPlayersPieces.get(PieceType.ROOK) > 0 ||
+				whitePlayersPieces.get(PieceType.PAWN) > 0 || blackPlayersPieces.get(PieceType.PAWN) > 0) {
+			return false;
+		}
+		else {
+			//can check-mate with 2+ bishops
+			if (whitePlayersPieces.get(PieceType.BISHOP) >= 2 || blackPlayersPieces.get(PieceType.BISHOP) >= 2) {
+				return false;
+			}
+			return true;
+		}
 	}
 	//prints out the protected squares when called 
 	
