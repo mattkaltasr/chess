@@ -20,6 +20,7 @@ public class Board {
 	private int[][] private_white;
 	private int[][] private_black;
 	
+	// added 
 	
 	
 	/*
