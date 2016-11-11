@@ -1,5 +1,9 @@
 package ChessGame;
 
+/**
+ * @author matt kalita and Yigit Gungor 
+ *
+ */
 public class InCheckException extends Exception {
 	
 	

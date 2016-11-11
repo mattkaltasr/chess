@@ -81,7 +81,12 @@ public class Board {
 	
 	
 	//initializing pieces
+	//cut code down by adding a loop to do task 
 	
+	
+	/**
+	 * used a loop to initialize pieces for game easier than loading individually 
+	 */
 	public void initialize() {
 		for (int column = 0; column < 8; column++) {
 			gameBoard[1][column].occupy(new Pawn(1, column, PieceColor.Black));
@@ -109,24 +114,42 @@ public class Board {
 		}
 	}
 	
+	
+     
 	public List<Pieces> piecesList = new ArrayList<Pieces>();
 	public String[][] board = new String[8][8];
 
 	
 
 	
-
+/**
+ * Getter method to return square 
+ * @param row
+ * @param column
+ * @return
+ */
 	public Square getSquare(int row, int column) {
 		return gameBoard[row][column];
 	}
-	
+	/**
+	 * getter method to return hash map of black pieces 
+	 * @return
+	 */
 	public HashMap<PieceType, Integer> getBlackCounts() {
 		return blackPlayersPieces;
 	}
-	
+	/**
+	 * getter to return hashmap of white players pieces 
+	 * @return
+	 */
 	public HashMap<PieceType, Integer> getWhiteCounts() {
 		return whitePlayersPieces;
 	}
+	
+	/**
+	 * gets the protected squares of white 
+	 * @return
+	 */
 	public int[][] getCoveredWhite() {
 		return private_white;
 	}
@@ -154,6 +177,10 @@ public class Board {
 	public String wspace = "    ";
 
 	// resets the array thats protected 
+	
+	/**
+	 * reset the 2 d array 
+	 */
 		public void resetCoveredSquares() {
 			for (int i = 0; i < 8; i++) {
 				for (int j = 0; j < 8; j++) {
@@ -166,6 +193,9 @@ public class Board {
 	
 
 	//prints out the virtual type board that is represented in this game 
+		/**
+		 * prints out the board in text version not gui 
+		 */
 		public void printBoard() {
 			for (int row = 0; row < 8; row++) {
 				for (int col = 0; col < 8; col++) {
@@ -180,6 +210,9 @@ public class Board {
 		}
 		
 		// prints out the text version of board
+		/**
+		 * prints out all the squares associated on the board and their respective toString method 
+		 */
 		public void printNotation() {
 			for (int row = 0; row < 8; row++) {
 				for (int col = 0; col < 8; col++) {
@@ -189,6 +222,12 @@ public class Board {
 			}
 			System.out.println();
 		}
+		
+		
+		
+		/**
+		 * void method to print out the  board 
+		 */
 	public void reDrawBoard(){
 		for (int i = 0; i < 8; i++) {
 			System.out.println("");
@@ -242,7 +281,10 @@ public class Board {
 		return "x";
 
 	}
-	
+	/**
+	 * returns a boolean if cant move 
+	 * @return
+	 */
 	public boolean draw() {
 		//check-mate is possible if there are queens and/or rooks and/or pawns on the board
 		if (whitePlayersPieces.get(PieceType.QUEEN) > 0 || blackPlayersPieces.get(PieceType.QUEEN) > 0 || 
@@ -259,7 +301,10 @@ public class Board {
 		}
 	}
 	//prints out the protected squares when called 
-	
+	/**
+	 * print method to print out the squares 
+	 * not called 
+	 */
 		public void printProtectedSquares() {
 			System.out.println("Black Squares:");
 			for (int row = 0; row < 8; row++) {
@@ -280,6 +325,10 @@ public class Board {
 		}
 		
 		//prints out sybols square to string method called 
+		/**
+		 * prints out the coordinates of the board 
+		 * revision 
+		 */
 		public void printCoordinates() {
 			for (int c = 0; c < 8; c++) {
 				for (int r = 0; r < 8; r++) {
@@ -289,7 +338,10 @@ public class Board {
 			}
 			System.out.println();
 		}
-		
+		/**
+		 * getter method to return black squares 
+		 * @return
+		 */
 		public int[][] getCoveredBlack() {
 			return private_black;
 		}

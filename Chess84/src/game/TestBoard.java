@@ -51,11 +51,12 @@ public class TestBoard {
 			for (int col = 0; col < 8; col++) {
 				Square temp = currentBoard.getSquare(row, col);
 				Pieces playertemp = temp.getPiece();
-				//only execute if the first square has a piece
+				//checks to see if square has piece 
 				if (playertemp != null && playertemp.getColor() == opposite) {
 					for (int newrow = 0; newrow < 8; newrow++) {
 						for (int newcol = 0; newcol < 8; newcol++) {
 							if (newrow != row || newcol != col) {
+								//tries the trial move to check if ok 
 								try {
 									if(trialMove(row, col, newrow, newcol, currentBoard, opposite)){
 										return true;
@@ -66,17 +67,28 @@ public class TestBoard {
 		end = true;
 		return false;
 	}// end of method 
+	
+	
+	/**
+	 * uses the playing board and the players color to det mine the kings activity 
+	 * @param current
+	 * @param playersColor
+	 */
 	public static void inCheck(Board current, PieceColor playersColor) {
 		for (int row = 0; row < 8; row++) {
 			for (int col = 0; col < 8; col++) {
 				Square playertemp = current.getSquare(row, col);
 				if (playertemp.getPiece() != null) {
+				//	checks to see if move will result in king capture of opposite players color 
 					if (playertemp.getPiece().getPieceType() == PieceType.KING && playertemp.getPiece().getColor() != playersColor) {
+						//if king and now to check the color 
 						if (playersColor == PieceColor.Black) {
+							//if its black king set boolean to true
 							if (current.getCoveredBlack()[row][col] == 1) {
 								check = true;
 								return;			}			}
 						else {
+							//checks white kning for same 
 							if (current.getCoveredWhite()[row][col] == 1) {
 								check = true;
 								return;				}			}
@@ -92,6 +104,17 @@ public class TestBoard {
 	//Array takes [ROW][COL] but chess positions are [COL][ROW]
 	//So board[y][x] y=a x=2 is actually A2 on the board
 	// loops thru and does all checks for moves 
+	
+	
+	/**move piece void method 
+	 *  take in the string for the move the current board  and process the moves and checks needed to move the chess piece 
+	 * 
+	 * @param move
+	 * @param board
+	 * @param color
+	 * @throws Exception
+	 * @throws IllegalMoveException
+	 */
 	public static void movePiece(String move, Board board, PieceColor color) 
 			throws Exception,IllegalMoveException {
 		PieceColor otherTemp;
@@ -106,6 +129,7 @@ public class TestBoard {
 		if(color != board.getSquare(rowsandColumns[0], rowsandColumns[1]).getPiece().getColor()){
 			throw new ImproperColorException();
 		}
+		//calls path blocked method for move of piece 
 		isPathBlocked(board, rowsandColumns[0], rowsandColumns[1], rowsandColumns[2], rowsandColumns[3]);
 		Square playsquare = board.getSquare(rowsandColumns[0], rowsandColumns[1]);
 		Square checkSquare = board.getSquare(rowsandColumns[2], rowsandColumns[3]);
@@ -117,6 +141,8 @@ public class TestBoard {
 		if(tempPiece != null){
 			hasMovedTemp2 = tempPiece.hasMoved();		}
 		
+		
+		//the check for castle move where if king and rook havent moved they can 
 		if (currentPiece.getPieceType() == PieceType.KING) {
 			Pieces tempRook;
 			if (currentPiece.getColor() == PieceColor.White) {
@@ -291,7 +317,8 @@ public class TestBoard {
 			black_moves.add(move);
 		}
 		//Pawn promotion if reached other players side  
-		//promotes it to Queen assisted by pawn promotion  below for switch rules 
+		//promotes it to Queen assisted
+		//by pawn promotion  below for switch rules 
 		if (checkSquare.getPiece().getPieceType() == PieceType.PAWN) {
 			if (checkSquare.getPiece().getColor() == PieceColor.White) {
 				if (checkSquare.getRow() == 0) {
@@ -312,7 +339,7 @@ public class TestBoard {
 		}
 		
 		
-		
+		//updates all the squares checks for in check the re-updates 
 		updateProtectedSquares(board);
 		inCheck(board, otherTemp);
 		updateProtectedSquares(board);
@@ -561,7 +588,12 @@ public class TestBoard {
 	
 	
 	
-
+/**
+ * returns a int for a char value 
+ * 
+ * @param letter
+ * @return
+ */
 	public int positionLettertoInt(String letter) {
 		switch (letter) {
 		case "a":
@@ -585,6 +617,12 @@ public class TestBoard {
 		return -1;
 
 	}
+	
+	/**
+	 * returns  CHAR FOR int value 
+	 * @param number
+	 * @return
+	 */
 	public String positionInttoLetter(int number) {
 		switch (number) {
 		case 0:
@@ -651,7 +689,7 @@ public class TestBoard {
 							throw new BlockedMoveException();	}	}
 				}
 			}
-			//otherwise rows are the same used similar code to rooks move above 
+			//otherwise rows are the same used similar code to rooks move 
 			else if (fromRow == toRow){
 				if (fromcolumn < toColumn) {
 					for (queen = fromcolumn + 1; queen < toColumn; queen++) {
@@ -668,9 +706,9 @@ public class TestBoard {
 							throw new BlockedMoveException();	}		}
 				}
 			}
-			//going up the board 
+			
 			if (fromRow > toRow) {
-				//going left
+			
 				row = fromRow - 1;
 								if (fromcolumn > toColumn) {
 					column = fromcolumn - 1;
@@ -683,7 +721,7 @@ public class TestBoard {
 						column--;
 					}
 				}
-				//going right on the board 
+				
 				else {
 					column = fromcolumn + 1;
 					while (row > toRow && column < toColumn) {
@@ -696,10 +734,10 @@ public class TestBoard {
 					}
 				}
 			}
-			//going down the board 
+			
 			else {
 				row = fromRow + 1;
-				//going left from that point 
+				
 				if (fromcolumn > toColumn) {
 					column = fromcolumn - 1;
 					while (row < toRow && column > toColumn) {
@@ -711,7 +749,7 @@ public class TestBoard {
 						column--;
 					}
 				}
-				//going right from that point 
+				
 				else {
 					column = fromcolumn + 1;
 					while (row < toRow && column < toColumn) {
@@ -726,10 +764,10 @@ public class TestBoard {
 			}
 			break;
 			case BISHOP:
-				//going in the upper direction of the board
+			
 				
 				if (fromRow > toRow) {
-					//going leftward on board 
+					
 					row = fromRow - 1;
 					if (fromcolumn > toColumn) {
 						column = fromcolumn - 1;
@@ -742,7 +780,7 @@ public class TestBoard {
 							column--;
 						}
 					}
-					//going rightward on board 
+					
 					else {
 						column = fromcolumn + 1;
 						while (row > toRow && column < toColumn) {
@@ -755,10 +793,10 @@ public class TestBoard {
 						}
 					}
 				}
-				//going down if needed on board 
+				
 				else {
 					row = fromRow + 1;
-					//going left
+					
 					if (fromcolumn > toColumn) {
 						column = fromcolumn - 1;
 						while (row < toRow && column > toColumn) {
@@ -770,7 +808,7 @@ public class TestBoard {
 							column--;
 						}
 					}
-					//going right on board 
+					
 					else {
 						column = fromcolumn + 1;
 						while (row < toRow && column < toColumn) {
@@ -927,7 +965,7 @@ public class TestBoard {
 			if(p2Temp != null){
 				hasMovedTemp2 = p2Temp.hasMoved();
 			}
-			//castling for white
+			
 			if (player.getPieceType() == PieceType.KING) {
 				Pieces rook_castle;
 				if (player.getColor() == PieceColor.White) {
@@ -958,7 +996,7 @@ public class TestBoard {
 						}
 					}
 				}
-				//castling for black
+				
 				else {
 					if (start.toString().equals("[0,4]") && (dest.toString().equals("[0,6]") || dest.toString().equals("[0,2]"))) {
 						if (dest.toString().equals("[0,6]")) {
@@ -1120,7 +1158,7 @@ public class TestBoard {
 			Pieces nieghborPawn;
 			Square neighbor;
 			
-			//white's move
+			
 			
 			if (piece1.getColor() == PieceColor.White) {
 				if (pawnPos.getRow() != 3) {

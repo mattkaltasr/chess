@@ -47,7 +47,8 @@ public abstract class Pieces {
 	 */
 	public void movePiece(int row, int column, BiFunction<Integer, Integer, Boolean> canMove) 
 			throws IllegalMoveException {
-		if(row < 0 || row > 7 || column < 0 || column > 7 || !canMove.apply(row, column)){
+		if(row < 0 || row > 7 || column < 0 || column > 7 ||
+				!canMove.apply(row, column)){
 			throw new IllegalMoveException();
 		}
 		if(this.row == row && this.column == column){
@@ -64,7 +65,8 @@ public abstract class Pieces {
 	 * @param col
 	 * @throws IllegalMoveException
 	 */
-	public void isMoveLegal(int row, int col) throws IllegalMoveException {
+	public void isMoveLegal(int row, int col) 
+			throws IllegalMoveException {
 		if(row < 0 || row > 7 || col < 0 || col > 7){
 			throw new IllegalMoveException();
 		}
@@ -79,7 +81,8 @@ public abstract class Pieces {
 	 * @throws IllegalMoveException
 	 */
 	
-	public void actualMove(int temprow, int tempcolumn, boolean hasMoved) throws IllegalMoveException {
+	public void actualMove(int temprow, int tempcolumn, boolean hasMoved) 
+			throws IllegalMoveException {
 		if(temprow < 0 || temprow > 7 || column < 0 || column > 7){
 			throw new IllegalMoveException();
 		}

@@ -46,7 +46,7 @@ public class King extends Pieces{
 	@Override
 	public void move(int krow, int column) throws IllegalMoveException {
 		// TODO Auto-generated method stub
-		//Lambda calling super method of move bi-function giving it tow ints and getting two returns to see if it can move 
+		//Lambda calling super method of move bi-function giving it tow ints bollean value  it can move 
 		super.movePiece(krow, column, (r, c) -> {
 			if (r == getRow() && (c == getCol() + 2 || c == getCol() - 2)) {
 				if (hasMoved()) {

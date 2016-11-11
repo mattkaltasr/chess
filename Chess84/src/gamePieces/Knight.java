@@ -46,7 +46,9 @@ public class Knight extends Pieces{
 	 */
 	public void isMoveLegal(int row, int column) throws IllegalMoveException {
 		super.isMoveLegal(row, column);
-		if(!((Math.abs(row - getRow()) == 2 && Math.abs(column - getCol()) == 1) || (Math.abs(row - getRow()) == 1 && Math.abs(column - getCol()) == 2))){
+		// checks both ays row 2 col 1 or row 1 col 2 squares if not throws exception 
+		if(!((Math.abs(row - getRow()) == 2 && Math.abs(column - getCol()) == 1) || 
+				(Math.abs(row - getRow()) == 1 && Math.abs(column - getCol()) == 2))){
 			throw new IllegalMoveException();
 		}
 	}

@@ -120,7 +120,7 @@ public class ChessGame {
 			newGame.printBoard();
 			TestBoard.updateProtectedSquares(newGame);
 			TestBoard.inCheck(newGame,gameColor);
-			if (TestBoard.getCheckStatus()){System.out.println(" Check ");}
+			if (TestBoard.getCheckStatus()){System.out.println("IN Check ");}
 			
 			if(player)
 				player=false;
