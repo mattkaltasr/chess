@@ -12,6 +12,10 @@ import game.Square;
 import gamePieces.*;
 
 
+/**
+ * @author Matt kalita and Yigit Gungor 
+ * test board class this class has the move methods of the board pieces 
+ */
 public class TestBoard {
 	
 	static int lastPawnMoveOrCapture = 0;
@@ -71,15 +75,11 @@ public class TestBoard {
 						if (playersColor == PieceColor.Black) {
 							if (current.getCoveredBlack()[row][col] == 1) {
 								check = true;
-								return;
-							}
-						}
+								return;			}			}
 						else {
 							if (current.getCoveredWhite()[row][col] == 1) {
 								check = true;
-								return;
-							}
-						}
+								return;				}			}
 					}
 				}
 			}
@@ -91,7 +91,7 @@ public class TestBoard {
 	
 	//Array takes [ROW][COL] but chess positions are [COL][ROW]
 	//So board[y][x] y=a x=2 is actually A2 on the board
-	
+	// loops thru and does all checks for moves 
 	public static void movePiece(String move, Board board, PieceColor color) 
 			throws Exception,IllegalMoveException {
 		PieceColor otherTemp;
@@ -115,19 +115,18 @@ public class TestBoard {
 		
 		boolean hasMovedTemp2 = false;
 		if(tempPiece != null){
-			hasMovedTemp2 = tempPiece.hasMoved();
-		}
+			hasMovedTemp2 = tempPiece.hasMoved();		}
 		
 		if (currentPiece.getPieceType() == PieceType.KING) {
-			Pieces rook_castle;
+			Pieces tempRook;
 			if (currentPiece.getColor() == PieceColor.White) {
 				if (playsquare.toString().equals("[7,4]") && (checkSquare.toString().equals("[7,6]") || checkSquare.toString().equals("[7,2]"))) {
 					if (checkSquare.toString().equals("[7,6]")) {
 						if (!board.getSquare(checkSquare.getRow(), checkSquare.column() - 1).isEmpty()) {
 							throw new BlockedMoveException();
 						}
-						rook_castle = board.getSquare(checkSquare.getRow(), checkSquare.column() + 1).getPiece();
-						if (checkCastle(currentPiece, rook_castle, board)) {
+						tempRook = board.getSquare(checkSquare.getRow(), checkSquare.column() + 1).getPiece();
+						if (checkCastle(currentPiece, tempRook, board)) {
 							currentPiece.move(checkSquare.getRow(), checkSquare.column());
 							board.getSquare(checkSquare.getRow(), checkSquare.column()).occupy(currentPiece);
 							playsquare.removePiece();
@@ -137,15 +136,13 @@ public class TestBoard {
 							return;
 						}
 						else {
-							throw new IllegalMoveException();
-						}
-					}
+							throw new IllegalMoveException();					}					}
 					else if (checkSquare.toString().equals("[7,2]")) {
 						if (!board.getSquare(checkSquare.getRow(), checkSquare.column() + 1).isEmpty()) {
 							throw new BlockedMoveException();
 						}
-						rook_castle = board.getSquare(checkSquare.getRow(), checkSquare.column() - 2).getPiece();
-						if (checkCastle(currentPiece, rook_castle, board)) {
+						tempRook = board.getSquare(checkSquare.getRow(), checkSquare.column() - 2).getPiece();
+						if (checkCastle(currentPiece, tempRook, board)) {
 							currentPiece.move(checkSquare.getRow(), checkSquare.column());
 							board.getSquare(checkSquare.getRow(), checkSquare.column()).occupy(currentPiece);
 							playsquare.removePiece();
@@ -167,8 +164,8 @@ public class TestBoard {
 						if (!board.getSquare(checkSquare.getRow(), checkSquare.column() - 1).isEmpty()) {
 							throw new BlockedMoveException();
 						}
-						rook_castle = board.getSquare(checkSquare.getRow(), checkSquare.column() + 1).getPiece();
-						if (checkCastle(currentPiece, rook_castle, board)) {
+						tempRook = board.getSquare(checkSquare.getRow(), checkSquare.column() + 1).getPiece();
+						if (checkCastle(currentPiece, tempRook, board)) {
 							currentPiece.move(checkSquare.getRow(), checkSquare.column());
 							currentPiece.setMoved();
 							board.getSquare(checkSquare.getRow(), checkSquare.column()).occupy(currentPiece);
@@ -187,8 +184,8 @@ public class TestBoard {
 						if (!board.getSquare(checkSquare.getRow(), checkSquare.column() + 1).isEmpty()) {
 							throw new BlockedMoveException();
 						}
-						rook_castle = board.getSquare(checkSquare.getRow(), checkSquare.column() - 2).getPiece();
-						if (checkCastle(currentPiece, rook_castle, board)) {
+						tempRook = board.getSquare(checkSquare.getRow(), checkSquare.column() - 2).getPiece();
+						if (checkCastle(currentPiece, tempRook, board)) {
 							currentPiece.move(checkSquare.getRow(), checkSquare.column());
 							currentPiece.setMoved();
 							board.getSquare(checkSquare.getRow(), checkSquare.column()).occupy(currentPiece);
@@ -209,7 +206,7 @@ public class TestBoard {
 		
 		//pawn can only move diagonally if it's capturing 
 		if (currentPiece.getPieceType() == PieceType.PAWN) {
-			//check forif its capturing)
+			//check for if its capturing)
 			if (pawnCapture(currentPiece, board, checkSquare)) {
 				Square adj_square;
 				if (currentPiece.getColor() == PieceColor.White) {
@@ -294,7 +291,7 @@ public class TestBoard {
 			black_moves.add(move);
 		}
 		//Pawn promotion if reached other players side  
-		//promotes it to Queen by default; additional promotions specified in promotePawn method
+		//promotes it to Queen assisted by pawn promotion  below for switch rules 
 		if (checkSquare.getPiece().getPieceType() == PieceType.PAWN) {
 			if (checkSquare.getPiece().getColor() == PieceColor.White) {
 				if (checkSquare.getRow() == 0) {
@@ -377,7 +374,7 @@ public class TestBoard {
 							for (int colloop = 0; colloop < 8; colloop++) {
 								if (rowloop != row1 || colloop != col1) {
 									try {
-										tempPlayer.islegal(rowloop, colloop);
+										tempPlayer.isMoveLegal(rowloop, colloop);
 										isPathBlocked(currentBoard, row1, col1, rowloop, colloop);
 									} catch (Exception  e) {
 										continue;
@@ -496,12 +493,9 @@ public class TestBoard {
 					}
 				}
 				if (!safeOnRight && !safeOnLeft) {
-					return false;
-				}
+					return false;				}
 			}
-			return true;
-		}
-	}
+			return true;		}	}//end of method 
 	
 	
 	

@@ -22,8 +22,8 @@ public class Rook extends Pieces {
 	 * @param col
 	 * @throws IllegalMoveException throws this if it is not legal to move 
 	 */
-	public void checkMove(int row, int col) throws IllegalMoveException {
-		super.islegal(row, col);
+	public void isMoveLegal(int row, int col) throws IllegalMoveException {
+		super.isMoveLegal(row, col);
 		if(row != getRow() && col != getCol()){
 			throw new IllegalMoveException();
 		}

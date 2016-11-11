@@ -64,7 +64,7 @@ public abstract class Pieces {
 	 * @param col
 	 * @throws IllegalMoveException
 	 */
-	public void islegal	(int row, int col) throws IllegalMoveException {
+	public void isMoveLegal(int row, int col) throws IllegalMoveException {
 		if(row < 0 || row > 7 || col < 0 || col > 7){
 			throw new IllegalMoveException();
 		}

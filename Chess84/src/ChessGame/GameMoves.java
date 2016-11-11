@@ -26,10 +26,12 @@ public class GameMoves extends ChessGame {
 			}
 		}
 		else if(temp.length() != 5){
+			//System.out.println("here less than 5 ");
 			throw new IllegalMoveException();
 		}
 		for(String s: temp.split(" ")){
 			if(s.length() != 2 && !s.equals("draw?")){
+				//System.out.println("here less than 2 ");
 				throw new IllegalMoveException();
 			}
 		}

@@ -23,8 +23,8 @@ public class King extends Pieces{
 	 * @throws IllegalMoveException if no good 
 	 */
 	
-	public void checkMove(int row, int column) throws IllegalMoveException {
-		super.islegal(row, column);
+	public void isMoveLegal(int row, int column) throws IllegalMoveException {
+		super.isMoveLegal(row, column);
 		if(row < getRow() - 1 || row > getRow() + 1 || column < getCol() - 1 || column > getCol() + 1){
 			throw new IllegalMoveException();
 		}

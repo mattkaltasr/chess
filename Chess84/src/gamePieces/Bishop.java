@@ -24,8 +24,8 @@ public class Bishop extends Pieces {
 	 * @throws IllegalMoveException if move is not able to be done 
 	 * 
 	 */
-	public void checkMove(int row, int column) throws IllegalMoveException {
-		super.islegal(row, column);
+	public void isMoveLegal(int row, int column) throws IllegalMoveException {
+		super.isMoveLegal(row, column);
 		int dr = row - getRow();
 		if (!(column == getCol() + dr || column == getCol() - dr)) {
 			throw new IllegalMoveException();

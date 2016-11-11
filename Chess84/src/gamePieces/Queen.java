@@ -27,8 +27,8 @@ public class Queen extends Pieces{
 	 * @param column
 	 * @throws IllegalMoveException
 	 */
-	public void checkMove(int row, int column) throws IllegalMoveException {
-		super.islegal(row, column);
+	public void isMoveLegal(int row, int column) throws IllegalMoveException {
+		super.isMoveLegal(row, column);
 		if(row != getRow() && column != getCol()){
 			int dr = row - getRow();
 			if (!(column == getCol() + dr || column == getCol() - dr)) {

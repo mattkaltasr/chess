@@ -9,6 +9,10 @@ import game.TestBoard;
 import gamePieces.IllegalMoveException;
 import gamePieces.PieceColor;
 
+/**
+ * @author matt kalita and Yigit Gungor 
+ *
+ */
 public class ChessGame {
 	
 	static   Boolean resign= false;
@@ -20,104 +24,117 @@ public class ChessGame {
 	
 	
 	
-	
+	/**
+	 * Main chess controller using a while loop and a try catch to catch exceptions 
+	 * @param args
+	 * @throws IllegalMoveException
+	 */
 	public static void main(String[] args)throws IllegalMoveException {
-   
-	 Boolean player=true;//set for white if true 
-	 Scanner input =new Scanner(System.in);
-	 PieceColor gameColor;
-	int Gamecounter =0;
-	
+		   
+		 Boolean player=true;//set for white if true 
+		 Scanner input =new Scanner(System.in);
+		 PieceColor gameColor;
 		
 		
-		//sets up game board for game play 
-	Board newGame= new Board();
-	newGame.initialize();
-	newGame.initializePieceCounts();
-	newGame.printBoard();
-	
-	while((TestBoard.getLastPawnMoveOrCapture()<50)&&!newGame.draw()&&!TestBoard.isEnd()){
-		Gamecounter++;
+			
+			
+			//sets up game board for game play 
+		Board newGame= new Board();
+		newGame.initialize();
+		newGame.initializePieceCounts();
+		newGame.printBoard();
 		
-		if(player){
-			gameColor=PieceColor.White;
-			System.out.print("\n White's Turn ");}//endif white 
-		else{ gameColor=PieceColor.Black;
-		System.out.print("\n Black's Turn ");
-			
-		}//end else 
 		
-		try{
-			String gameMove=input.nextLine();
-			TestBoard.updateProtectedSquares(newGame);
-			if(gameMove.equalsIgnoreCase("resign")){
-				if(gameColor==PieceColor.Black){
-					System.out.print("White Player  Wins!! ");
-				}//endif black 
-				else{
-					System.out.print("Black Player Wins!! ");
-				}//end else
-				break;
-			}//end gamemove test 
+		 @SuppressWarnings("unused")
+		int gameCounter =0;
+		 
+		 
+		 
+		while((TestBoard.getLastPawnMoveOrCapture()<50)&&!newGame.draw()&&!TestBoard.isEnd()){
 			
+			gameCounter++;
 			
-			
-			gameMove=gameMove.trim();//cuts down whitespace for begining and end of string 
-			
-			if(gameMove.length()==7) {
-				TestBoard.promotePawn(gameMove,newGame,gameColor);}
-			else { TestBoard.movePiece(gameMove,newGame,gameColor);
+			if(player){
+				gameColor=PieceColor.White;
+				System.out.print("\n White's Turn ");}//endif white 
+			else{ gameColor=PieceColor.Black;
+			System.out.print("\n Black's Turn ");
 				
-			}//end if 7 game move 
+			}//end else 
 			
+			try{
+				
+				TestBoard.updateProtectedSquares(newGame);
+				
+				String gameMove=input.nextLine();
+				
+				if(gameMove.equalsIgnoreCase("resign")){
+					if(gameColor==PieceColor.Black){
+						System.out.print("White Player  Wins!! ");
+					}//endif black 
+					else{
+						System.out.print("Black Player Wins!! ");
+					}//end else
+					break;
+				}//end gamemove test 
+				
+				
+				
+				gameMove=gameMove.trim();//cuts down whitespace for begining and end of string 
+				
+				if(gameMove.length()==7) {
+					TestBoard.promotePawn(gameMove,newGame,gameColor);}
+				else { TestBoard.movePiece(gameMove,newGame,gameColor);
+					
+				}//end if 7 game move 
+				
+				
+				
+			}//end try 
 			
-			
-		}//end try 
-		
-		catch (InCheckException e){
-			Gamecounter--;
+			catch (InCheckException e){
+				gameCounter--;
+				System.out.println("Please try again ,cant do that move");
+				continue;}
+			catch(ImproperColorException e){
+				gameCounter--;
+				System.out.println("Please try again ,cant do that move");
+				continue;}
+		catch (BlockedMoveException e){
+			gameCounter--;
 			System.out.println("Please try again ,cant do that move");
 			continue;}
-		catch(ImproperColorException e){
-			Gamecounter--;
-			System.out.println("Please try again ,cant do that move");
-			continue;}
-	catch (BlockedMoveException e){
-		Gamecounter--;
-		System.out.println("Please try again ,cant do that move");
-		continue;}
-		catch(IllegalMoveException e){
-			Gamecounter--;
-			System.out.println("Please try again ,cant do that move");
-			continue;}
-		//catch anything else not planned for 
-		catch (Exception e){
+			catch(IllegalMoveException e){
+				gameCounter--;
+				System.out.println("Please try again ,cant do that move");
+				continue;}
+			//catch anything else not planned for 
+			catch (Exception e){
+				
+				System.out.println("\nNo Moves ");
+				gameCounter--;
+				continue;
+				}
 			
-			System.out.println("\nNo Moves ");
+			System.out.println();
+			newGame.printBoard();
+			TestBoard.updateProtectedSquares(newGame);
+			TestBoard.inCheck(newGame,gameColor);
+			if (TestBoard.getCheckStatus()){System.out.println(" Check ");}
 			
-			}
-		
-		System.out.println();
-		TestBoard.updateProtectedSquares(newGame);
-		TestBoard.inCheck(newGame,gameColor);
-		if (TestBoard.getCheckStatus()){System.out.println(" Check ");}
-		
-		if(player)
-			player=false;
-		else
-			player=true;
-		
+			if(player)
+				player=false;
+			else
+				player=true;
 			
+				
+			
+			
+			
+			
+		}//end of while
 		
-		
-		
-		
-	}//end of while
-	
-	
+		input.close();
 	}//end of main 
-	
-	
-	
 
-}
+}//end of class 
