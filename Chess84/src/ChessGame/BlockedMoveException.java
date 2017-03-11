@@ -1,7 +1,7 @@
 package ChessGame;
 
 /**
- * @author matt kalita and Yigit Gungor 
+ * @author matt kalita 
  *
  */
 public class BlockedMoveException  extends Exception{
