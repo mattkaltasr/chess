@@ -1,7 +1,7 @@
 package gamePieces;
 
 /**
- * @author matt kalita and Yigit Gungor 
+ * @author matt kalita 
  *
  */
 public class Bishop extends Pieces {
